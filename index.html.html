@@ -1,1774 +1,1447 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Garva Biryani – Order authentic Hyderabadi & Lucknowi Biryani online. Fresh, made-to-order. Delivery in Pune." />
-  <meta name="keywords" content="biryani, hyderabadi biryani, garva biryani, online food order, pune biryani" />
-  <title>Garva Biryani | गर्वा बिर्याणी – Order Online</title>
+  <title>DURWAA TRAVELS — Connecting Journeys, Exploring New Horizons</title>
 
-  <!-- Fonts: Playfair Display for headings, Hind for body + Devanagari -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Google Fonts: Plus Jakarta Sans + Playfair Display -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark:    '#0B1120',
+              darker:  '#070d18',
+              navy:    '#0f1a2e',
+              maroon:  '#7f1d1d',
+              amber:   '#f59e0b',
+              amberHov:'#d97706',
+            }
+          },
+          fontFamily: {
+            jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Playfair Display"', 'serif'],
+          },
+        }
+      }
+    }
+  </script>
 
   <style>
-    /* ═══════════════════════════════════════════════════════════
-       DESIGN TOKENS & RESET
-    ═══════════════════════════════════════════════════════════ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg-base:      #0D0B09;
-      --bg-card:      #161210;
-      --bg-card-2:    #1D1916;
-      --bg-nav:       rgba(13,11,9,0.96);
-      --amber:        #E8920A;
-      --amber-light:  #F5AE34;
-      --amber-pale:   #FDD88A;
-      --red:          #C84B2B;
-      --red-light:    #E05A38;
-      --green:        #3A9B5A;
-      --green-light:  #4BBB6E;
-      --cream:        #F5EDD8;
-      --cream-dim:    #C9B99A;
-      --stone:        #6B5E4E;
-      --stone-light:  #8C7B68;
-      --border:       rgba(232,146,10,0.15);
-      --border-hover: rgba(232,146,10,0.45);
-      --shadow-card:  0 4px 24px rgba(0,0,0,0.55);
-      --shadow-amber: 0 6px 28px rgba(232,146,10,0.22);
-      --r-sm: 8px;
-      --r-md: 14px;
-      --r-lg: 20px;
-      --r-xl: 28px;
-      --font-display: 'Playfair Display', Georgia, serif;
-      --font-body:    'Hind', sans-serif;
-      --transition:   all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
+    /* ─── Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: var(--font-body);
-      background: var(--bg-base);
-      color: var(--cream);
-      min-height: 100vh;
-      overflow-x: hidden;
-      line-height: 1.6;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #0B1120;
+      color: #f1f5f9;
+      margin: 0;
     }
 
-    /* Subtle background texture */
+    /* ─── Noise grain overlay ───────────────────────── */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image:
-        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(232,146,10,0.07) 0%, transparent 60%),
-        url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23e8920a' fill-opacity='0.025'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
-      z-index: 0;
+      z-index: 9999;
+      opacity: 0.35;
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       SCROLLBAR
-    ═══════════════════════════════════════════════════════════ */
+    /* ─── Scrollbar ─────────────────────────────────── */
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg-base); }
-    ::-webkit-scrollbar-thumb { background: var(--stone); border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: #0B1120; }
+    ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 3px; }
 
-    /* ═══════════════════════════════════════════════════════════
-       UTILITY
-    ═══════════════════════════════════════════════════════════ */
-    .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
-    .relative { position: relative; }
-
-    /* ═══════════════════════════════════════════════════════════
-       ANNOUNCEMENT BAR
-    ═══════════════════════════════════════════════════════════ */
-    #announce-bar {
-      position: relative;
-      z-index: 10;
-      background: linear-gradient(90deg, var(--red) 0%, #A33820 100%);
-      padding: 8px 20px;
-      text-align: center;
-      font-size: 12.5px;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-      color: #FFE0D5;
-    }
-    #announce-bar span { color: #FFD0BC; font-weight: 700; }
-
-    /* ═══════════════════════════════════════════════════════════
-       NAVIGATION
-    ═══════════════════════════════════════════════════════════ */
-    #main-nav {
+    /* ─── Navbar ────────────────────────────────────── */
+    .navbar {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: var(--bg-nav);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 20px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      z-index: 1000;
+      background: rgba(11,17,32,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(245,158,11,0.15);
     }
 
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-    .nav-logo-icon {
-      width: 40px; height: 40px;
-      background: linear-gradient(135deg, var(--amber), var(--red));
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-    .nav-brand-text { display: flex; flex-direction: column; line-height: 1.15; }
-    .nav-brand-en  { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--cream); }
-    .nav-brand-mr  { font-size: 11px; font-weight: 500; color: var(--amber); letter-spacing: 1px; }
-
-    .nav-actions { display: flex; align-items: center; gap: 10px; }
-
-    /* Language Toggle */
-    #lang-toggle {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      border: 1.5px solid var(--border-hover);
-      border-radius: 100px;
-      overflow: hidden;
-      background: rgba(232,146,10,0.06);
-      flex-shrink: 0;
-    }
-    .lang-opt {
-      padding: 6px 14px;
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      background: transparent;
-      color: var(--cream-dim);
-      letter-spacing: 0.3px;
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-    .lang-opt.active {
-      background: var(--amber);
-      color: var(--bg-base);
-    }
-    .lang-divider {
-      width: 1px; height: 20px;
-      background: var(--border-hover);
-      flex-shrink: 0;
+    /* ─── Logo ──────────────────────────────────────── */
+    .logo-dt {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
     }
 
-    /* Cart Button */
-    #cart-btn {
+    /* ─── Hero ──────────────────────────────────────── */
+    .hero-section {
+      background: #0B1120;
       position: relative;
-      display: flex; align-items: center; gap: 8px;
-      padding: 9px 18px;
-      background: var(--amber);
-      color: var(--bg-base);
-      border: none; border-radius: 100px;
-      font-family: var(--font-body);
-      font-size: 13px; font-weight: 700;
-      cursor: pointer;
-      transition: var(--transition);
-      box-shadow: var(--shadow-amber);
-      flex-shrink: 0;
-    }
-    #cart-btn:hover { background: var(--amber-light); transform: translateY(-1px); }
-    #cart-btn:active { transform: scale(0.97); }
-    .cart-btn-icon { font-size: 16px; }
-    #cart-count {
-      background: var(--red);
-      color: #fff;
-      border-radius: 50%;
-      width: 18px; height: 18px;
-      font-size: 10px; font-weight: 800;
-      display: flex; align-items: center; justify-content: center;
-      position: absolute; top: -5px; right: -5px;
-      opacity: 0; transform: scale(0);
-      transition: var(--transition);
-    }
-    #cart-count.show { opacity: 1; transform: scale(1); }
-
-    /* ═══════════════════════════════════════════════════════════
-       HERO
-    ═══════════════════════════════════════════════════════════ */
-    #hero {
-      position: relative; z-index: 1;
-      padding: 60px 20px 52px;
-      text-align: center;
       overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
     }
-    #hero::after {
+    .hero-section::before {
       content: '';
       position: absolute;
-      bottom: -1px; left: 0; right: 0; height: 80px;
-      background: linear-gradient(to bottom, transparent, var(--bg-base));
+      top: -20%;
+      right: -10%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 65%);
       pointer-events: none;
     }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11px; font-weight: 600; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--amber);
-      background: rgba(232,146,10,0.1);
-      border: 1px solid rgba(232,146,10,0.3);
-      padding: 6px 16px; border-radius: 100px;
-      margin-bottom: 20px;
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: -15%;
+      left: -8%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(127,29,29,0.18) 0%, transparent 65%);
+      pointer-events: none;
     }
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 7vw, 68px);
-      font-weight: 900;
-      line-height: 1.05;
-      margin-bottom: 18px;
-      color: var(--cream);
+    .hero-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(245,158,11,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,158,11,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
     }
-    .hero-title em {
-      font-style: italic;
-      background: linear-gradient(110deg, var(--amber-pale) 0%, var(--amber) 40%, var(--red-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+
+    /* ─── Glass card ────────────────────────────────── */
+    .glass-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 20px;
     }
-    .hero-subtitle {
-      font-size: 16px;
-      color: var(--cream-dim);
-      max-width: 520px;
-      margin: 0 auto 32px;
-      line-height: 1.7;
+    .glass-input {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+      color: #f1f5f9;
+      padding: 12px 16px;
+      width: 100%;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.875rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .hero-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: linear-gradient(135deg, var(--amber), var(--red));
-      color: #fff;
-      padding: 14px 32px;
-      border-radius: 100px;
-      font-family: var(--font-body);
-      font-size: 15px; font-weight: 700;
-      border: none; cursor: pointer;
-      box-shadow: 0 8px 32px rgba(200,75,43,0.35);
-      transition: var(--transition);
+    .glass-input::placeholder { color: rgba(241,245,249,0.4); }
+    .glass-input:focus {
+      border-color: rgba(245,158,11,0.6);
+      background: rgba(255,255,255,0.1);
+    }
+    .glass-input option { background: #1e293b; color: #f1f5f9; }
+
+    /* ─── CTA Button ────────────────────────────────── */
+    .btn-amber {
+      background: #f59e0b;
+      color: #0B1120;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      padding: 13px 28px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       text-decoration: none;
     }
-    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(200,75,43,0.45); }
-
-    .hero-stats {
-      display: flex; justify-content: center; gap: clamp(20px, 5vw, 60px);
-      margin-top: 44px; flex-wrap: wrap;
+    .btn-amber:hover {
+      background: #d97706;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(245,158,11,0.35);
     }
-    .stat { text-align: center; }
-    .stat-number {
-      font-family: var(--font-display);
-      font-size: 30px; font-weight: 700;
-      color: var(--amber);
-      display: block;
-    }
-    .stat-label { font-size: 11px; color: var(--stone-light); letter-spacing: 1px; text-transform: uppercase; }
+    .btn-amber:active { transform: translateY(0); }
 
-    /* ═══════════════════════════════════════════════════════════
-       CATEGORY STICKY NAV
-    ═══════════════════════════════════════════════════════════ */
-    #cat-nav {
-      position: sticky;
-      top: 64px;
-      z-index: 90;
-      background: rgba(13,11,9,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 16px;
-      overflow-x: auto;
-      scrollbar-width: none;
+    /* ─── Services Section ──────────────────────────── */
+    .services-section {
+      background: #ffffff;
+      position: relative;
+    }
+    .service-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      position: relative;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      border-color: #f59e0b;
+    }
+    .service-card.featured {
+      border: 2px solid #7f1d1d;
+      background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
+    }
+    .service-card.featured:hover {
+      border-color: #f59e0b;
+    }
+    .service-icon-wrap {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    /* ─── Stats Bar ─────────────────────────────────── */
+    .stats-bar {
+      background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+      border-top: 1px solid rgba(245,158,11,0.2);
+      border-bottom: 1px solid rgba(245,158,11,0.2);
+    }
+
+    /* ─── Footer ────────────────────────────────────── */
+    .footer-section {
+      background: #070d18;
+      border-top: 1px solid rgba(245,158,11,0.15);
+    }
+
+    /* ─── Admin Dashboard ───────────────────────────── */
+    .admin-wrapper {
+      background: #060b14;
+      border-top: 4px solid #f59e0b;
+    }
+    .admin-demo-banner {
+      background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+      color: #0B1120;
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-align: center;
+      padding: 10px;
+      text-transform: uppercase;
+    }
+    .admin-sidebar {
+      background: #0a1020;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      width: 220px;
+      min-height: 700px;
+      flex-shrink: 0;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #94a3b8;
+      border-radius: 8px;
+      margin: 2px 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .sidebar-link:hover, .sidebar-link.active {
+      background: rgba(245,158,11,0.1);
+      color: #f59e0b;
+    }
+    .sidebar-link.active { border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0; margin-left: 0; padding-left: 17px; }
+    .admin-main {
+      flex: 1;
+      background: #0d1526;
+      padding: 28px;
+      overflow: auto;
+    }
+    .admin-table th {
+      background: #0a1020;
+      color: #64748b;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .admin-table td {
+      padding: 14px 16px;
+      font-size: 0.83rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      vertical-align: middle;
+      color: #cbd5e1;
+    }
+    .admin-table tr:hover td { background: rgba(245,158,11,0.04); }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .status-pending {
+      background: rgba(245,158,11,0.12);
+      color: #f59e0b;
+      border: 1px solid rgba(245,158,11,0.25);
+    }
+    .status-assigned {
+      background: rgba(34,197,94,0.1);
+      color: #22c55e;
+      border: 1px solid rgba(34,197,94,0.25);
+    }
+    .status-enroute {
+      background: rgba(59,130,246,0.1);
+      color: #60a5fa;
+      border: 1px solid rgba(59,130,246,0.25);
+    }
+    .btn-dispatch {
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s, transform 0.15s;
       white-space: nowrap;
     }
-    #cat-nav::-webkit-scrollbar { display: none; }
-    #cat-nav-inner {
-      display: inline-flex;
-      gap: 0;
-      min-width: 100%;
+    .btn-dispatch:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ─── Modal ─────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(6,11,20,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 5000;
+      align-items: center;
       justify-content: center;
     }
-    .cat-tab {
-      padding: 16px 22px;
-      font-family: var(--font-body);
-      font-size: 13px; font-weight: 600;
-      color: var(--stone-light);
-      background: transparent; border: none;
-      border-bottom: 3px solid transparent;
-      cursor: pointer;
-      transition: var(--transition);
-      white-space: nowrap;
-      text-decoration: none;
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #0f1a2e;
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 16px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+      animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
     }
-    .cat-tab:hover { color: var(--cream); border-bottom-color: rgba(232,146,10,0.4); }
-    .cat-tab.active { color: var(--amber); border-bottom-color: var(--amber); }
-
-    /* ═══════════════════════════════════════════════════════════
-       MENU SECTION
-    ═══════════════════════════════════════════════════════════ */
-    #menu-section { position: relative; z-index: 1; padding: 0 16px 80px; max-width: 1200px; margin: 0 auto; }
-
-    .menu-category { padding-top: 52px; }
-    .cat-header {
-      display: flex; align-items: center; gap: 16px;
-      margin-bottom: 8px;
+    @keyframes modalIn {
+      from { opacity:0; transform: scale(0.9) translateY(20px); }
+      to   { opacity:1; transform: scale(1) translateY(0); }
     }
-    .cat-icon-wrap {
-      width: 44px; height: 44px;
-      background: linear-gradient(135deg, rgba(232,146,10,0.2), rgba(200,75,43,0.15));
-      border: 1px solid var(--border-hover);
-      border-radius: var(--r-md);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; flex-shrink: 0;
-    }
-    .cat-title-wrap { flex: 1; }
-    .cat-title {
-      font-family: var(--font-display);
-      font-size: clamp(20px, 4vw, 26px);
-      font-weight: 700;
-      color: var(--cream);
-      line-height: 1.2;
-    }
-    .cat-title-mr {
-      font-size: 14px;
-      color: var(--amber);
-      font-weight: 500;
-      margin-top: 2px;
-    }
-    .cat-divider {
-      height: 1px;
-      background: linear-gradient(90deg, var(--border-hover) 0%, transparent 80%);
-      margin-bottom: 28px;
-    }
-
-    /* Menu Grid */
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 18px;
-    }
-
-    /* ═══════════════════════════════════════════════════════════
-       MENU CARD
-    ═══════════════════════════════════════════════════════════ */
-    .menu-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      display: flex; flex-direction: column;
-      transition: var(--transition);
-      animation: fadeUp 0.4s ease both;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .menu-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-card);
-    }
-
-    /* Card image area */
-    .card-img-wrap {
+    .wa-preview {
+      background: #0a1929;
+      border: 1px solid rgba(37,211,102,0.2);
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: #94a3b8;
+      font-family: monospace;
       position: relative;
-      height: 176px;
-      overflow: hidden;
-      background: var(--bg-card-2);
-      flex-shrink: 0;
     }
-    .card-img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    .menu-card:hover .card-img { transform: scale(1.06); }
-    .card-img-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(13,11,9,0.75) 0%, transparent 55%);
-    }
-
-    /* Badges */
-    .badges {
-      position: absolute; top: 10px; left: 10px;
-      display: flex; flex-wrap: wrap; gap: 5px; z-index: 2;
-    }
-    .badge {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 4px 10px; border-radius: 100px;
-      font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
-    }
-    .badge-bestseller { background: var(--amber); color: var(--bg-base); }
-    .badge-bulk       { background: var(--red); color: #fff; }
-    .badge-veg        { background: var(--green); color: #fff; }
-
-    /* Veg / Non-veg indicator */
-    .veg-indicator {
-      position: absolute; top: 10px; right: 10px; z-index: 2;
-      width: 20px; height: 20px;
-      border-radius: 4px; border: 2px solid;
-      background: rgba(13,11,9,0.85);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .veg-indicator.veg   { border-color: var(--green-light); }
-    .veg-indicator.nonveg{ border-color: var(--red-light); }
-    .veg-indicator .dot  { width: 8px; height: 8px; border-radius: 50%; }
-    .veg-indicator.veg   .dot { background: var(--green-light); }
-    .veg-indicator.nonveg .dot{ background: var(--red-light); }
-
-    /* Card body */
-    .card-body {
-      padding: 14px 16px 16px;
-      display: flex; flex-direction: column; gap: 8px;
-      flex: 1;
-    }
-    .card-name {
-      font-family: var(--font-display);
-      font-size: 16px; font-weight: 700;
-      color: var(--cream); line-height: 1.3;
-    }
-    .card-name-mr {
-      font-size: 12px; font-weight: 500;
-      color: rgba(232,146,10,0.75); margin-top: 1px;
-    }
-    .card-desc {
-      font-size: 12.5px; color: var(--stone-light);
-      line-height: 1.55; flex: 1;
-    }
-    .card-note {
-      font-size: 11px; color: rgba(200,75,43,0.85);
-      background: rgba(200,75,43,0.08);
-      border: 1px solid rgba(200,75,43,0.2);
-      padding: 5px 9px; border-radius: var(--r-sm);
-      font-weight: 500; line-height: 1.45;
-    }
-
-    /* Portion selector */
-    .portion-wrap { display: flex; gap: 6px; }
-    .portion-btn {
-      flex: 1; padding: 7px 4px;
-      font-family: var(--font-body);
-      font-size: 12px; font-weight: 600;
-      border: 1.5px solid rgba(107,94,78,0.5);
-      border-radius: var(--r-sm);
-      background: transparent; color: var(--cream-dim);
-      cursor: pointer; transition: var(--transition);
-      line-height: 1.2; text-align: center;
-    }
-    .portion-btn:hover { border-color: var(--amber); color: var(--amber); }
-    .portion-btn.selected {
-      background: rgba(232,146,10,0.15);
-      border-color: var(--amber);
-      color: var(--amber);
-    }
-    .portion-price { font-size: 11px; display: block; margin-top: 2px; font-weight: 700; }
-
-    /* Card footer */
-    .card-footer {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 10px; margin-top: 4px;
-    }
-    .price-wrap { display: flex; flex-direction: column; }
-    .price-main {
-      font-family: var(--font-display);
-      font-size: 22px; font-weight: 700;
-      color: var(--amber); line-height: 1;
-    }
-    .price-label { font-size: 10px; color: var(--stone-light); margin-top: 2px; }
-
-    .add-btn {
-      display: flex; align-items: center; gap: 6px;
-      padding: 10px 20px;
-      background: var(--amber);
-      color: var(--bg-base);
-      border: none; border-radius: 100px;
-      font-family: var(--font-body);
-      font-size: 13px; font-weight: 700;
-      cursor: pointer; transition: var(--transition);
-      box-shadow: var(--shadow-amber);
-      white-space: nowrap;
-    }
-    .add-btn:hover { background: var(--amber-light); transform: scale(1.03); }
-    .add-btn:active { transform: scale(0.97); }
-    .add-btn-icon { font-size: 15px; transition: transform 0.2s; }
-    .add-btn:hover .add-btn-icon { transform: rotate(90deg); }
-
-    /* ═══════════════════════════════════════════════════════════
-       CART DRAWER
-    ═══════════════════════════════════════════════════════════ */
-    #cart-backdrop {
-      position: fixed; inset: 0; z-index: 200;
-      background: rgba(0,0,0,0.72);
-      backdrop-filter: blur(4px);
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    #cart-backdrop.open { opacity: 1; pointer-events: all; }
-
-    #cart-drawer {
-      position: fixed; top: 0; right: 0;
-      z-index: 201;
-      width: min(420px, 100vw);
-      height: 100%;
-      background: #120F0C;
-      border-left: 1px solid var(--border);
-      display: flex; flex-direction: column;
-      transform: translateX(100%);
-      transition: transform 0.34s cubic-bezier(0.32, 0.72, 0, 1);
-      box-shadow: -20px 0 60px rgba(0,0,0,0.6);
-    }
-    #cart-drawer.open { transform: translateX(0); }
-
-    .cart-head {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 20px;
-      border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-    .cart-head-left { display: flex; align-items: center; gap: 10px; }
-    .cart-title-text {
-      font-family: var(--font-display);
-      font-size: 20px; font-weight: 700;
-    }
-    #cart-item-count {
-      background: var(--amber);
-      color: var(--bg-base);
-      border-radius: 100px;
+    .wa-preview::before {
+      content: 'WhatsApp Preview';
+      position: absolute;
+      top: -10px;
+      left: 14px;
+      background: #25d366;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
       padding: 2px 10px;
-      font-size: 11px; font-weight: 800;
+      border-radius: 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: 0.05em;
     }
-    .cart-close {
-      width: 34px; height: 34px;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--bg-card-2);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      color: var(--cream-dim); font-size: 18px;
-      cursor: pointer; transition: var(--transition);
+    .select-dark {
+      background: #0d1526;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #f1f5f9;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      width: 100%;
+      outline: none;
     }
-    .cart-close:hover { background: var(--border); color: var(--cream); }
+    .select-dark:focus { border-color: #f59e0b; }
 
-    /* Bulk warning in cart */
-    #cart-bulk-warn {
-      display: none;
-      margin: 12px 16px 0;
-      padding: 12px 14px;
-      background: rgba(200,75,43,0.1);
-      border: 1px solid rgba(200,75,43,0.35);
-      border-radius: var(--r-md);
-      font-size: 12.5px; line-height: 1.5;
-      color: #F5A090;
-      gap: 10px; align-items: flex-start;
+    /* ─── Animations ────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(30px); }
+      to   { opacity:1; transform:translateY(0); }
     }
-    #cart-bulk-warn.show { display: flex; }
-    .cart-warn-icon { font-size: 18px; flex-shrink: 0; }
+    .animate-fade-up { animation: fadeUp 0.8s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
+    .delay-4 { animation-delay: 0.55s; }
 
-    #cart-items {
-      flex: 1; overflow-y: auto;
-      padding: 14px 16px;
-      display: flex; flex-direction: column; gap: 10px;
-    }
-    .cart-empty {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      height: 100%; gap: 12px; color: var(--stone);
-    }
-    .cart-empty-icon { font-size: 52px; }
-    .cart-empty-text { font-size: 15px; font-weight: 500; }
-    .cart-empty-sub  { font-size: 13px; color: var(--stone); margin-top: -4px; }
-
-    .cart-item {
-      display: flex; gap: 10px;
-      padding: 12px 13px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      align-items: flex-start;
-    }
-    .ci-veg {
-      width: 16px; height: 16px;
-      border-radius: 3px; border: 2px solid;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; margin-top: 2px;
-    }
-    .ci-veg.veg   { border-color: var(--green-light); }
-    .ci-veg.nonveg{ border-color: var(--red-light); }
-    .ci-veg .ci-dot { width: 6px; height: 6px; border-radius: 50%; }
-    .ci-veg.veg    .ci-dot { background: var(--green-light); }
-    .ci-veg.nonveg .ci-dot { background: var(--red-light); }
-    .ci-info { flex: 1; min-width: 0; }
-    .ci-name { font-size: 13px; font-weight: 600; line-height: 1.3; }
-    .ci-sub  { font-size: 11px; color: var(--stone-light); margin-top: 2px; text-transform: capitalize; }
-    .ci-price{ font-size: 14px; font-weight: 700; color: var(--amber); margin-top: 5px; }
-    .ci-qty-controls { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-    .ci-qty-btn {
-      width: 28px; height: 28px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--bg-card-2); color: var(--cream);
-      font-size: 16px; font-weight: 700;
-      cursor: pointer; transition: var(--transition);
-      display: flex; align-items: center; justify-content: center; line-height: 1;
-    }
-    .ci-qty-btn:hover { background: var(--border); }
-    .ci-qty-btn.remove:hover { background: rgba(200,75,43,0.2); border-color: rgba(200,75,43,0.5); color: var(--red-light); }
-    .ci-qty-num { font-size: 14px; font-weight: 700; min-width: 18px; text-align: center; }
-
-    /* Cart Footer */
-    .cart-foot {
-      border-top: 1px solid var(--border);
-      padding: 16px 18px;
-      display: flex; flex-direction: column; gap: 10px;
-      flex-shrink: 0;
-    }
-    .bill-row {
-      display: flex; justify-content: space-between;
-      font-size: 13px; color: var(--stone-light);
-    }
-    .bill-row.total {
-      font-size: 18px; font-weight: 700;
-      color: var(--cream); border-top: 1px solid var(--border);
-      padding-top: 10px; margin-top: 2px;
-    }
-    .bill-row.total .bill-val { color: var(--amber); }
-
-    #whatsapp-btn {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      width: 100%; padding: 15px;
-      background: linear-gradient(135deg, #25D366, #1AAD50);
-      color: #fff; border: none; border-radius: 100px;
-      font-family: var(--font-body);
-      font-size: 15px; font-weight: 700;
-      cursor: pointer; transition: var(--transition);
-      box-shadow: 0 6px 24px rgba(37,211,102,0.3);
+    /* ─── Nav link underline ────────────────────────── */
+    .nav-link {
+      position: relative;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #94a3b8;
       text-decoration: none;
+      transition: color 0.2s;
+      padding-bottom: 2px;
     }
-    #whatsapp-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(37,211,102,0.4); }
-    #whatsapp-btn:active { transform: scale(0.98); }
-    .wa-icon { width: 22px; height: 22px; flex-shrink: 0; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      background: #f59e0b;
+      border-radius: 2px;
+      transition: width 0.25s ease;
+    }
+    .nav-link:hover { color: #f1f5f9; }
+    .nav-link:hover::after { width: 100%; }
 
-    /* ═══════════════════════════════════════════════════════════
-       BULK WARNING MODAL
-    ═══════════════════════════════════════════════════════════ */
-    #modal-overlay {
-      position: fixed; inset: 0; z-index: 300;
-      background: rgba(0,0,0,0.82);
-      backdrop-filter: blur(8px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 20px;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.25s ease;
+    /* ─── Section label pill ────────────────────────── */
+    .section-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.25);
+      color: #f59e0b;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
     }
-    #modal-overlay.open { opacity: 1; pointer-events: all; }
-    #modal-box {
-      background: var(--bg-card);
-      border: 1px solid rgba(200,75,43,0.45);
-      border-radius: var(--r-xl);
-      padding: 32px 28px;
-      max-width: 400px; width: 100%;
-      text-align: center;
-      transform: scale(0.88) translateY(20px);
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 24px 80px rgba(0,0,0,0.7);
-    }
-    #modal-overlay.open #modal-box { transform: scale(1) translateY(0); }
-    .modal-icon  { font-size: 52px; margin-bottom: 16px; }
-    .modal-title {
-      font-family: var(--font-display);
-      font-size: 22px; font-weight: 700;
-      color: var(--cream); margin-bottom: 12px;
-    }
-    .modal-body {
-      font-size: 14.5px; color: var(--cream-dim);
-      line-height: 1.65; margin-bottom: 24px;
-    }
-    .modal-body strong { color: var(--amber); }
-    .modal-btns { display: flex; gap: 10px; }
-    .modal-btn-cancel {
-      flex: 1; padding: 12px;
-      background: var(--bg-card-2);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      color: var(--cream-dim); font-family: var(--font-body);
-      font-size: 13px; font-weight: 600;
-      cursor: pointer; transition: var(--transition);
-    }
-    .modal-btn-cancel:hover { border-color: var(--border-hover); color: var(--cream); }
-    .modal-btn-confirm {
-      flex: 1; padding: 12px;
-      background: var(--red);
-      border: none; border-radius: 100px;
-      color: #fff; font-family: var(--font-body);
-      font-size: 13px; font-weight: 700;
-      cursor: pointer; transition: var(--transition);
-    }
-    .modal-btn-confirm:hover { background: var(--red-light); transform: translateY(-1px); }
-
-    /* ═══════════════════════════════════════════════════════════
-       TOAST NOTIFICATION
-    ═══════════════════════════════════════════════════════════ */
-    #toast {
-      position: fixed;
-      bottom: 28px; left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      z-index: 400;
-      background: var(--bg-card-2);
-      border: 1px solid var(--border-hover);
-      color: var(--cream);
-      padding: 11px 22px;
-      border-radius: 100px;
-      font-size: 13.5px; font-weight: 500;
-      white-space: nowrap;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.25s ease, transform 0.3s ease;
-    }
-    #toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+    .section-pill-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(127,29,29,0.12);
+      border: 1px solid rgba(127,29,29,0.3);
+      color: #ef4444;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════════════════════════ */
-    #site-footer {
-      position: relative; z-index: 1;
-      background: var(--bg-card);
-      border-top: 1px solid var(--border);
-      padding: 40px 20px;
-      text-align: center;
+    /* ─── Divider chrome line ───────────────────────── */
+    .chrome-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245,158,11,0.4), transparent);
     }
-    .footer-logo {
-      font-family: var(--font-display);
-      font-size: 24px; font-weight: 700;
-      color: var(--cream); margin-bottom: 8px;
-    }
-    .footer-tagline { font-size: 13px; color: var(--stone-light); margin-bottom: 20px; }
-    .footer-contact {
-      display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-    .footer-contact a {
-      font-size: 13px; color: var(--amber);
-      text-decoration: none;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .footer-contact a:hover { color: var(--amber-light); }
-    .footer-copy { font-size: 12px; color: var(--stone); }
 
-    /* ═══════════════════════════════════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════════════════════════════════ */
-    @media (max-width: 640px) {
-      .nav-brand-en { font-size: 15px; }
-      .nav-brand-mr { display: none; }
-      .lang-opt { padding: 5px 10px; font-size: 11px; }
-      #cart-btn .cart-btn-text { display: none; }
-      #cat-nav-inner { justify-content: flex-start; }
-      .menu-grid { grid-template-columns: 1fr; }
-      .hero-cta span.cta-sub { display: none; }
-    }
-    @media (max-width: 380px) {
-      .lang-opt { padding: 5px 8px; }
+    /* ─── Responsive helpers ─────────────────────────── */
+    @media (max-width: 768px) {
+      .admin-sidebar { display: none; }
+      .hero-form-col { display: none; }
     }
   </style>
 </head>
-
 <body>
 
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║  ANNOUNCEMENT BAR                                        ║
-     ╚══════════════════════════════════════════════════════════╝ -->
-<div id="announce-bar" role="banner" aria-label="Announcement">
-  <span id="ann-text">🔥 Free delivery above ₹300 &nbsp;|&nbsp; Order via WhatsApp for instant confirmation &nbsp;|&nbsp; 📞 +91 98765 43210</span>
+<!-- ═══════════════════════════════════════════════════════
+     GLOBAL NAVIGATION
+════════════════════════════════════════════════════════ -->
+<nav class="navbar px-6 lg:px-12">
+  <div class="max-w-7xl mx-auto flex items-center justify-between h-16">
+
+    <!-- Logo -->
+    <a href="#" class="logo-dt flex items-center gap-2 no-underline">
+      <span style="color:#f59e0b; font-size:1.35rem; letter-spacing:-0.03em;">DT</span>
+      <span style="color:rgba(255,255,255,0.2); font-weight:300; font-size:1.1rem;">|</span>
+      <span style="color:#f1f5f9; font-size:0.95rem; font-weight:700; letter-spacing:0.06em;">DURWAA TRAVELS</span>
+    </a>
+
+    <!-- Center nav links -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#services"  class="nav-link">Services</a>
+      <a href="#vehicles"  class="nav-link">Vehicles</a>
+      <a href="#corporate" class="nav-link">Corporate</a>
+      <a href="#contact"   class="nav-link">Contact</a>
+    </div>
+
+    <!-- Right side actions -->
+    <div class="flex items-center gap-3">
+      <a href="tel:7776976767" class="hidden md:inline-flex items-center gap-2 text-sm font-600 text-amber-400 hover:text-amber-300 transition-colors">
+        <i class="fas fa-phone-alt text-xs"></i>
+        7776976767
+      </a>
+      <a href="#admin-dashboard" class="text-xs font-600 px-4 py-2 rounded-lg border border-white/10 text-slate-400 hover:border-amber-500/40 hover:text-slate-200 transition-all">
+        <i class="fas fa-lock mr-1.5 text-xs opacity-60"></i>Admin Login
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO SECTION
+════════════════════════════════════════════════════════ -->
+<section class="hero-section">
+  <div class="hero-grid-lines"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-20 w-full">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: Copy -->
+      <div class="animate-fade-up">
+        <div class="section-pill mb-6">
+          <i class="fas fa-circle text-[8px]"></i> B2B Enterprise Transport · Pune
+        </div>
+
+        <h1 class="font-display text-5xl lg:text-6xl font-bold leading-tight mb-6" style="color:#f1f5f9; line-height:1.1;">
+          Connecting<br/>
+          <span style="color:#f59e0b;">Journeys,</span><br/>
+          <span style="color:rgba(241,245,249,0.7);">Exploring New</span><br/>
+          Horizons
+        </h1>
+
+        <p class="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg">
+          Reliable, tech-enabled employee transportation for Pune's leading IT sector companies. Zero-compromise safety, real-time tracking, and seamless operations — built for enterprise scale.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mb-12">
+          <button class="btn-amber">
+            <i class="fas fa-building"></i>
+            Get Corporate Quote
+          </button>
+          <a href="tel:7776976767" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-white/10 text-slate-300 text-sm font-600 hover:border-amber-500/30 hover:text-white transition-all">
+            <i class="fas fa-phone text-amber-500"></i>
+            Call Us Now
+          </a>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="flex flex-wrap gap-6">
+          <div class="flex items-center gap-2 text-slate-500 text-sm">
+            <i class="fas fa-shield-alt text-amber-500/60"></i>
+            <span>GPS Tracked Fleets</span>
+          </div>
+          <div class="flex items-center gap-2 text-slate-500 text-sm">
+            <i class="fas fa-clock text-amber-500/60"></i>
+            <span>24/7 Operations</span>
+          </div>
+          <div class="flex items-center gap-2 text-slate-500 text-sm">
+            <i class="fas fa-users text-amber-500/60"></i>
+            <span>IT Sector Specialists</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Glass Enquiry Form -->
+      <div class="glass-card p-8 animate-fade-up delay-2 hero-form-col hidden lg:block">
+        <div class="flex items-center gap-3 mb-1">
+          <div class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></div>
+          <span class="text-xs font-700 text-amber-400 tracking-widest uppercase">Quick Corporate Enquiry</span>
+        </div>
+        <p class="text-slate-500 text-sm mb-7">Get a customised transport proposal within 2 business hours.</p>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs text-slate-500 font-600 mb-1.5 uppercase tracking-wider">Your Name</label>
+            <input type="text" class="glass-input" placeholder="Rahul Sharma" />
+          </div>
+          <div>
+            <label class="block text-xs text-slate-500 font-600 mb-1.5 uppercase tracking-wider">IT Company Name</label>
+            <input type="text" class="glass-input" placeholder="e.g. Infosys, TCS, Wipro" />
+          </div>
+          <div>
+            <label class="block text-xs text-slate-500 font-600 mb-1.5 uppercase tracking-wider">Phone Number</label>
+            <input type="tel" class="glass-input" placeholder="+91 98765 43210" />
+          </div>
+          <div>
+            <label class="block text-xs text-slate-500 font-600 mb-1.5 uppercase tracking-wider">Service Required</label>
+            <select class="glass-input">
+              <option value="" disabled selected>Select a service…</option>
+              <option>Employee Transportation (Daily Shift)</option>
+              <option>Car Rental (Monthly Contract)</option>
+              <option>Airport Pickup & Drop</option>
+              <option>Tours & Travels</option>
+              <option>Premium Car Services</option>
+            </select>
+          </div>
+          <button class="btn-amber w-full justify-center mt-2">
+            <i class="fas fa-paper-plane"></i>
+            Request Quote
+          </button>
+        </div>
+
+        <p class="text-slate-600 text-xs mt-4 text-center">
+          <i class="fas fa-lock mr-1"></i>Your details are 100% confidential & never shared.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     STATS BAR
+════════════════════════════════════════════════════════ -->
+<div class="stats-bar py-6">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <div class="text-3xl font-bold text-white font-display">500+</div>
+        <div class="text-red-200 text-xs font-500 mt-1 uppercase tracking-wider">Employees Transported Daily</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-white font-display">30+</div>
+        <div class="text-red-200 text-xs font-500 mt-1 uppercase tracking-wider">Corporate Clients</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-white font-display">50+</div>
+        <div class="text-red-200 text-xs font-500 mt-1 uppercase tracking-wider">Vehicles in Fleet</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-white font-display">99.2%</div>
+        <div class="text-red-200 text-xs font-500 mt-1 uppercase tracking-wider">On-Time Delivery</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║  NAVIGATION                                              ║
-     ╚══════════════════════════════════════════════════════════╝ -->
-<nav id="main-nav" role="navigation" aria-label="Main navigation">
-  <a href="#" class="nav-brand" aria-label="Garva Biryani Home">
-    <div class="nav-logo-icon" aria-hidden="true">🍛</div>
-    <div class="nav-brand-text">
-      <span class="nav-brand-en">Garva Biryani</span>
-      <span class="nav-brand-mr">गर्वा बिर्याणी</span>
-    </div>
-  </a>
 
-  <div class="nav-actions">
-    <!-- Language Toggle -->
-    <div id="lang-toggle" role="group" aria-label="Language selection">
-      <button class="lang-opt active" data-lang="en" onclick="setLang('en')" aria-pressed="true">EN</button>
-      <div class="lang-divider" aria-hidden="true"></div>
-      <button class="lang-opt" data-lang="mr" onclick="setLang('mr')" aria-pressed="false">मराठी</button>
+<!-- ═══════════════════════════════════════════════════════
+     SERVICES SECTION
+════════════════════════════════════════════════════════ -->
+<section id="services" class="services-section py-24">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="text-center mb-16">
+      <div class="section-pill-dark mb-4 inline-flex">
+        <i class="fas fa-circle text-[8px]"></i> What We Offer
+      </div>
+      <h2 class="font-display text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+        Our Premium Services
+      </h2>
+      <p class="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
+        From daily IT shift runs to luxury airport transfers — purpose-built transport solutions for every corporate need.
+      </p>
     </div>
 
-    <!-- Cart Button -->
-    <button id="cart-btn" onclick="openCart()" aria-label="View cart">
-      <span class="cart-btn-icon" aria-hidden="true">🛒</span>
-      <span class="cart-btn-text" data-key="cart_btn">Cart</span>
-      <span id="cart-count" aria-live="polite" aria-atomic="true">0</span>
-    </button>
+    <!-- Services Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card 1: Employee Transportation (FEATURED) -->
+      <div class="service-card featured col-span-1 md:col-span-2 lg:col-span-1 lg:row-span-1">
+        <div class="p-8">
+          <div class="flex items-start justify-between mb-6">
+            <div class="service-icon-wrap" style="background:rgba(127,29,29,0.08);">
+              <i class="fas fa-bus-alt" style="color:#7f1d1d;"></i>
+            </div>
+            <span class="text-xs font-700 px-3 py-1 rounded-full" style="background:#7f1d1d; color:#fff; letter-spacing:0.05em;">
+              #1 B2B Priority
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Employee Transportation</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-6">
+            Dedicated shift-based transport solutions for IT parks and corporate campuses. Daily rosters, WhatsApp dispatch, GPS tracking, and compliance reports — all included.
+          </p>
+          <div class="space-y-2 mb-6">
+            <div class="flex items-center gap-2 text-sm text-slate-600">
+              <i class="fas fa-check-circle text-amber-500 text-xs"></i> Morning & Night Shift Coverage
+            </div>
+            <div class="flex items-center gap-2 text-sm text-slate-600">
+              <i class="fas fa-check-circle text-amber-500 text-xs"></i> Dedicated Route Managers
+            </div>
+            <div class="flex items-center gap-2 text-sm text-slate-600">
+              <i class="fas fa-check-circle text-amber-500 text-xs"></i> Monthly SLA Reports
+            </div>
+          </div>
+          <button class="btn-amber text-sm">Explore Package <i class="fas fa-arrow-right text-xs"></i></button>
+        </div>
+        <!-- Decorative stripe -->
+        <div style="height:4px; background:linear-gradient(90deg,#7f1d1d,#f59e0b);"></div>
+      </div>
+
+      <!-- Card 2: Car Rental -->
+      <div class="service-card">
+        <div class="p-7">
+          <div class="service-icon-wrap mb-5" style="background:#fef3c7;">
+            <i class="fas fa-car" style="color:#d97706;"></i>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Car Rental</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-5">
+            Flexible rental packages for corporate events, client visits, and executive travel. Daily, weekly, or monthly contracts.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Sedan</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">SUV</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Tempo Traveller</span>
+          </div>
+          <a href="#" class="text-sm font-600 text-amber-600 hover:text-amber-700 flex items-center gap-1 transition-colors">
+            View Fleet <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Airport Service -->
+      <div class="service-card">
+        <div class="p-7">
+          <div class="service-icon-wrap mb-5" style="background:#eff6ff;">
+            <i class="fas fa-plane-departure" style="color:#3b82f6;"></i>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Airport Pickup & Drop</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-5">
+            Punctual, flight-tracked airport transfers to/from Pune International Airport. Available round the clock.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">24/7 Service</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Flight Tracking</span>
+          </div>
+          <a href="#" class="text-sm font-600 text-amber-600 hover:text-amber-700 flex items-center gap-1 transition-colors">
+            Book Transfer <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 4: Tours & Travels -->
+      <div class="service-card">
+        <div class="p-7">
+          <div class="service-icon-wrap mb-5" style="background:#f0fdf4;">
+            <i class="fas fa-map-marked-alt" style="color:#16a34a;"></i>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Tours & Travels</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-5">
+            Curated group tours, team outings, and pilgrimage packages across Maharashtra and pan-India.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Team Outings</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Pilgrimages</span>
+          </div>
+          <a href="#" class="text-sm font-600 text-amber-600 hover:text-amber-700 flex items-center gap-1 transition-colors">
+            Explore Tours <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 5: Premium Car Services -->
+      <div class="service-card">
+        <div class="p-7">
+          <div class="service-icon-wrap mb-5" style="background:#fdf4ff;">
+            <i class="fas fa-gem" style="color:#9333ea;"></i>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Premium Car Services</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-5">
+            Executive chauffeur-driven luxury vehicles for C-suite travel, VIP guests, and high-profile corporate events.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Innova Crysta</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Mercedes</span>
+          </div>
+          <a href="#" class="text-sm font-600 text-amber-600 hover:text-amber-700 flex items-center gap-1 transition-colors">
+            Request VIP Car <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
   </div>
-</nav>
+</section>
 
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║  HERO                                                    ║
-     ╚══════════════════════════════════════════════════════════╝ -->
-<header id="hero" role="banner">
-  <p class="hero-eyebrow" aria-hidden="true">🌟 <span data-key="eyebrow">Authentic · Pune's Favourite · Since 2006</span></p>
-  <h1 class="hero-title" data-key="hero_title">Biryani Cooked With<br><em>Passion & Soul</em></h1>
-  <p class="hero-subtitle" data-key="hero_sub">Every grain of basmati tells a story — slow-cooked on dum, sealed with saffron, crafted with generations of love.</p>
-  <a href="#biryani" class="hero-cta">
-    <span>🍴</span>
-    <span data-key="order_now_cta">Order Now</span>
-  </a>
-  <div class="hero-stats" role="list" aria-label="Restaurant statistics">
-    <div class="stat" role="listitem">
-      <span class="stat-number">500+</span>
-      <span class="stat-label" data-key="stat_orders">Daily Orders</span>
-    </div>
-    <div class="stat" role="listitem">
-      <span class="stat-number">4.9★</span>
-      <span class="stat-label" data-key="stat_rating">Customer Rating</span>
-    </div>
-    <div class="stat" role="listitem">
-      <span class="stat-number">18+</span>
-      <span class="stat-label" data-key="stat_years">Years of Flavour</span>
-    </div>
-    <div class="stat" role="listitem">
-      <span class="stat-number">3</span>
-      <span class="stat-label" data-key="stat_outlets">City Outlets</span>
-    </div>
-  </div>
-</header>
 
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║  CATEGORY NAV                                            ║
-     ╚══════════════════════════════════════════════════════════╝ -->
-<nav id="cat-nav" aria-label="Menu categories">
-  <div id="cat-nav-inner">
-    <a href="#biryani"  class="cat-tab active" data-key="cat_biryani">🍛 Regular Biryani</a>
-    <a href="#specials" class="cat-tab"        data-key="cat_specials">🍗 Garva Specials</a>
-    <a href="#bulk"     class="cat-tab"        data-key="cat_bulk">📦 Bulk / 1 Kg Orders</a>
-  </div>
-</nav>
+<!-- ═══════════════════════════════════════════════════════
+     WHY DURWAA — DARK SECTION
+════════════════════════════════════════════════════════ -->
+<section id="corporate" style="background:#0B1120;" class="py-24">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <div class="section-pill mb-5">
+          <i class="fas fa-circle text-[8px]"></i> Why Choose Us
+        </div>
+        <h2 class="font-display text-4xl font-bold text-white mb-6 leading-tight">
+          Built for Pune's<br/><span class="text-amber-400">IT Ecosystem</span>
+        </h2>
+        <p class="text-slate-400 leading-relaxed mb-10">
+          We understand the rhythm of IT shifts, BPO rotations, and tech-park operations. Durwaa Travels is not just a transport vendor — we are your operational partner, ensuring your team arrives on time, every time.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="glass-card p-5">
+            <i class="fas fa-route text-amber-400 mb-3 text-xl"></i>
+            <h4 class="text-white font-600 text-sm mb-1">Smart Route Planning</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">AI-optimized routes minimize travel time and fuel costs across all Pune IT zones.</p>
+          </div>
+          <div class="glass-card p-5">
+            <i class="fab fa-whatsapp text-green-400 mb-3 text-xl"></i>
+            <h4 class="text-white font-600 text-sm mb-1">WhatsApp Dispatch</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">Instant driver notifications via WhatsApp Cloud API. No app downloads required.</p>
+          </div>
+          <div class="glass-card p-5">
+            <i class="fas fa-file-invoice text-blue-400 mb-3 text-xl"></i>
+            <h4 class="text-white font-600 text-sm mb-1">GST Invoicing & Reports</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">Automated monthly billing with GST-compliant invoices and SLA performance reports.</p>
+          </div>
+          <div class="glass-card p-5">
+            <i class="fas fa-user-shield text-purple-400 mb-3 text-xl"></i>
+            <h4 class="text-white font-600 text-sm mb-1">Verified Drivers</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">All drivers are police-verified with background checks, training certificates, and regular audits.</p>
+          </div>
+        </div>
+      </div>
 
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║  MENU                                                    ║
-     ╚══════════════════════════════════════════════════════════╝ -->
-<main id="menu-section" role="main">
-
-  <!-- ── CATEGORY 1: Regular Biryani ──────────────────────── -->
-  <section class="menu-category" id="biryani" aria-labelledby="cat1-title">
-    <div class="cat-header">
-      <div class="cat-icon-wrap" aria-hidden="true">🍛</div>
-      <div class="cat-title-wrap">
-        <h2 class="cat-title" id="cat1-title" data-key="cat_biryani_long">Regular Biryani Portions</h2>
-        <p class="cat-title-mr" data-key="cat_biryani_mr">नियमित बिर्याणी</p>
+      <!-- Right: Contact CTA card -->
+      <div id="contact">
+        <div class="glass-card p-8">
+          <h3 class="text-xl font-bold text-white mb-2">Get in Touch</h3>
+          <p class="text-slate-500 text-sm mb-7">Ready to streamline your employee transport? Reach out directly or fill the enquiry form.</p>
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(245,158,11,0.1);">
+                <i class="fas fa-map-marker-alt text-amber-400 text-sm"></i>
+              </div>
+              <div>
+                <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Office Address</div>
+                <div class="text-slate-300 text-sm leading-relaxed">Shop No.66, Ground Floor, Kumar Palladium Plaza,<br/>Wagholi, Pune – 412207</div>
+              </div>
+            </div>
+            <div class="chrome-line"></div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(245,158,11,0.1);">
+                <i class="fas fa-phone-alt text-amber-400 text-sm"></i>
+              </div>
+              <div>
+                <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Phone</div>
+                <div class="text-slate-300 text-sm">
+                  <a href="tel:7776976767" class="hover:text-amber-400 transition-colors">+91 7776976767</a>
+                  <span class="text-slate-600 mx-2">/</span>
+                  <a href="tel:9146966670" class="hover:text-amber-400 transition-colors">+91 9146966670</a>
+                </div>
+              </div>
+            </div>
+            <div class="chrome-line"></div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(245,158,11,0.1);">
+                <i class="fas fa-envelope text-amber-400 text-sm"></i>
+              </div>
+              <div>
+                <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Email</div>
+                <a href="mailto:booking@durwaatravels.in" class="text-slate-300 text-sm hover:text-amber-400 transition-colors">booking@durwaatravels.in</a>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 grid grid-cols-2 gap-3">
+            <button class="btn-amber justify-center text-sm">
+              <i class="fas fa-envelope"></i> Email Us
+            </button>
+            <a href="https://wa.me/917776976767" class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-white text-sm font-600 transition-all" style="background:#25d366;">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="cat-divider" aria-hidden="true"></div>
-    <div class="menu-grid" id="biryani-grid" role="list" aria-label="Regular Biryani items"></div>
-  </section>
-
-  <!-- ── CATEGORY 2: Garva Specials ────────────────────────── -->
-  <section class="menu-category" id="specials" aria-labelledby="cat2-title">
-    <div class="cat-header">
-      <div class="cat-icon-wrap" aria-hidden="true">🔥</div>
-      <div class="cat-title-wrap">
-        <h2 class="cat-title" id="cat2-title" data-key="cat_specials_long">Garva Specials — Starters</h2>
-        <p class="cat-title-mr" data-key="cat_specials_mr">गर्वा स्पेशल्स</p>
-      </div>
-    </div>
-    <div class="cat-divider" aria-hidden="true"></div>
-    <div class="menu-grid" id="specials-grid" role="list" aria-label="Garva Specials items"></div>
-  </section>
-
-  <!-- ── CATEGORY 3: Bulk Orders ───────────────────────────── -->
-  <section class="menu-category" id="bulk" aria-labelledby="cat3-title">
-    <div class="cat-header">
-      <div class="cat-icon-wrap" aria-hidden="true">📦</div>
-      <div class="cat-title-wrap">
-        <h2 class="cat-title" id="cat3-title" data-key="cat_bulk_long">Bulk / 1 Kg Party Orders</h2>
-        <p class="cat-title-mr" data-key="cat_bulk_mr">मोठ्या ऑर्डर्स</p>
-      </div>
-    </div>
-    <div class="cat-divider" aria-hidden="true"></div>
-    <div class="menu-grid" id="bulk-grid" role="list" aria-label="Bulk order items"></div>
-  </section>
-
-</main>
-
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║  FOOTER                                                  ║
-     ╚══════════════════════════════════════════════════════════╝ -->
-<footer id="site-footer">
-  <p class="footer-logo">🍛 Garva Biryani</p>
-  <p class="footer-tagline" data-key="footer_tag">Slow-cooked. Soul-served. Always fresh.</p>
-  <div class="footer-contact">
-    <a href="tel:+919876543210">📞 +91 98765 43210</a>
-    <a href="https://wa.me/919876543210" target="_blank" rel="noopener">💬 WhatsApp Us</a>
-    <a href="mailto:order@garvabiryani.com">✉️ order@garvabiryani.com</a>
   </div>
-  <p class="footer-copy" data-key="footer_copy">© 2025 Garva Biryani. All rights reserved. Pune, Maharashtra.</p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════ -->
+<footer id="footer" class="footer-section py-16">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+
+      <!-- Brand col -->
+      <div class="md:col-span-1">
+        <div class="logo-dt flex items-center gap-2 mb-4">
+          <span style="color:#f59e0b; font-size:1.4rem;">DT</span>
+          <span style="color:rgba(255,255,255,0.2); font-weight:300;">|</span>
+          <span style="color:#f1f5f9; font-size:0.9rem; font-weight:700; letter-spacing:0.06em;">DURWAA TRAVELS</span>
+        </div>
+        <p class="text-slate-500 text-xs leading-relaxed mb-5">Connecting Journeys, Exploring New Horizons. Pune's trusted partner for enterprise-grade employee transportation.</p>
+        <div class="flex gap-3">
+          <a href="#" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-amber-500/20 flex items-center justify-center text-slate-500 hover:text-amber-400 transition-all text-sm">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-amber-500/20 flex items-center justify-center text-slate-500 hover:text-amber-400 transition-all text-sm">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/917776976767" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-green-500/20 flex items-center justify-center text-slate-500 hover:text-green-400 transition-all text-sm">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="#" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-amber-500/20 flex items-center justify-center text-slate-500 hover:text-amber-400 transition-all text-sm">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h4 class="text-white text-sm font-700 mb-5 uppercase tracking-wider">Services</h4>
+        <ul class="space-y-2.5 text-slate-500 text-sm">
+          <li><a href="#" class="hover:text-amber-400 transition-colors">Employee Transportation</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition-colors">Car Rental</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition-colors">Airport Transfers</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition-colors">Tours & Travels</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition-colors">Premium Car Services</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h4 class="text-white text-sm font-700 mb-5 uppercase tracking-wider">Company</h4>
+        <ul class="space-y-2.5 text-slate-500 text-sm">
+          <li><a href="#" class="hover:text-amber-400 transition-colors">About Durwaa</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition-colors">Our Fleet</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition-colors">Corporate Plans</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition-colors">Safety Standards</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition-colors">Careers</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="text-white text-sm font-700 mb-5 uppercase tracking-wider">Contact</h4>
+        <ul class="space-y-3 text-slate-500 text-sm">
+          <li class="flex items-start gap-2">
+            <i class="fas fa-map-marker-alt text-amber-500/60 mt-0.5 flex-shrink-0 text-xs"></i>
+            <span>Shop No.66, G/F, Kumar Palladium Plaza, Wagholi, Pune – 412207</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <i class="fas fa-phone-alt text-amber-500/60 text-xs"></i>
+            <a href="tel:7776976767" class="hover:text-amber-400 transition-colors">7776976767 / 9146966670</a>
+          </li>
+          <li class="flex items-center gap-2">
+            <i class="fas fa-envelope text-amber-500/60 text-xs"></i>
+            <a href="mailto:booking@durwaatravels.in" class="hover:text-amber-400 transition-colors">booking@durwaatravels.in</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="chrome-line mb-6"></div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-slate-600 text-xs">© 2025 Durwaa Travels. All rights reserved. GSTIN: 27XXXXX.</p>
+      <div class="flex gap-5 text-slate-600 text-xs">
+        <a href="#" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+        <a href="#" class="hover:text-slate-400 transition-colors">Refund Policy</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║  CART DRAWER                                             ║
-     ╚══════════════════════════════════════════════════════════╝ -->
-<div id="cart-backdrop" onclick="closeCart()" aria-hidden="true"></div>
 
-<aside id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title">
-  <div class="cart-head">
-    <div class="cart-head-left">
-      <span aria-hidden="true" style="font-size:20px;">🛍️</span>
-      <h2 class="cart-title-text" id="cart-drawer-title" data-key="your_order">Your Order</h2>
-      <span id="cart-item-count">0</span>
-    </div>
-    <button class="cart-close" onclick="closeCart()" aria-label="Close cart">✕</button>
+<!-- ═══════════════════════════════════════════════════════
+     ADMIN DASHBOARD SECTION
+════════════════════════════════════════════════════════ -->
+<div id="admin-dashboard" class="admin-wrapper">
+
+  <!-- Demo Banner -->
+  <div class="admin-demo-banner">
+    <i class="fas fa-flask mr-2"></i>
+    ⚡ DEMO: Admin Dispatch Dashboard — Internal Operations View · Not Publicly Accessible
+    <i class="fas fa-flask ml-2"></i>
   </div>
 
-  <!-- Bulk warning in cart -->
-  <div id="cart-bulk-warn" role="alert">
-    <span class="cart-warn-icon" aria-hidden="true">⚠️</span>
-    <div id="cart-bulk-warn-text"></div>
-  </div>
+  <!-- Dashboard Shell -->
+  <div class="flex" style="min-height:780px;">
 
-  <!-- Items list -->
-  <div id="cart-items" aria-label="Cart items" aria-live="polite"></div>
-
-  <!-- Footer -->
-  <div class="cart-foot" id="cart-foot" style="display:none;">
-    <div class="bill-row">
-      <span data-key="subtotal">Subtotal</span>
-      <span class="bill-val" id="bill-subtotal">₹0</span>
-    </div>
-    <div class="bill-row">
-      <span data-key="gst">GST (5%)</span>
-      <span class="bill-val" id="bill-gst">₹0</span>
-    </div>
-    <div class="bill-row">
-      <span data-key="packing">Packing Charges</span>
-      <span class="bill-val" id="bill-packing">₹0</span>
-    </div>
-    <div class="bill-row total">
-      <span data-key="total">Total</span>
-      <span class="bill-val" id="bill-total">₹0</span>
-    </div>
-    <a id="whatsapp-btn" href="#" target="_blank" rel="noopener" aria-label="Checkout via WhatsApp">
-      <!-- WhatsApp SVG icon -->
-      <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      <span data-key="whatsapp_btn">Checkout via WhatsApp</span>
-    </a>
-  </div>
-</aside>
-
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║  BULK WARNING MODAL                                      ║
-     ╚══════════════════════════════════════════════════════════╝ -->
-<div id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-  <div id="modal-box">
-    <div class="modal-icon" aria-hidden="true">⏰</div>
-    <h3 class="modal-title" id="modal-title" data-key="modal_title">Important — Bulk Order Notice</h3>
-    <p class="modal-body" id="modal-body"></p>
-    <div class="modal-btns">
-      <button class="modal-btn-cancel" onclick="cancelBulkAdd()" data-key="modal_cancel">Cancel</button>
-      <button class="modal-btn-confirm" onclick="confirmBulkAdd()" data-key="modal_confirm">Got it, Add to Cart</button>
-    </div>
-  </div>
-</div>
-
-<!-- Toast -->
-<div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
-
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║  JAVASCRIPT                                              ║
-     ╚══════════════════════════════════════════════════════════╝ -->
-<script>
-'use strict';
-
-/* ═══════════════════════════════════════════════════════════════
-   CONFIGURATION
-═══════════════════════════════════════════════════════════════ */
-const CONFIG = {
-  whatsapp_number: '919876543210',  // ← Replace with your number
-  gst_rate:        0.05,
-  packing_per_item: 10,
-};
-
-/* ═══════════════════════════════════════════════════════════════
-   UI TRANSLATIONS  (data-key → string)
-═══════════════════════════════════════════════════════════════ */
-const UI_STRINGS = {
-  en: {
-    eyebrow:           'Authentic · Pune\'s Favourite · Since 2006',
-    hero_title:        'Biryani Cooked With<br><em>Passion &amp; Soul</em>',
-    hero_sub:          'Every grain of basmati tells a story — slow-cooked on dum, sealed with saffron, crafted with generations of love.',
-    order_now_cta:     'Order Now',
-    stat_orders:       'Daily Orders',
-    stat_rating:       'Customer Rating',
-    stat_years:        'Years of Flavour',
-    stat_outlets:      'City Outlets',
-    cat_biryani:       '🍛 Regular Biryani',
-    cat_specials:      '🍗 Garva Specials',
-    cat_bulk:          '📦 Bulk / 1 Kg Orders',
-    cat_biryani_long:  'Regular Biryani Portions',
-    cat_biryani_mr:    'नियमित बिर्याणी',
-    cat_specials_long: 'Garva Specials — Starters',
-    cat_specials_mr:   'गर्वा स्पेशल्स',
-    cat_bulk_long:     'Bulk / 1 Kg Party Orders',
-    cat_bulk_mr:       'मोठ्या ऑर्डर्स',
-    cart_btn:          'Cart',
-    your_order:        'Your Order',
-    subtotal:          'Subtotal',
-    gst:               'GST (5%)',
-    packing:           'Packing Charges',
-    total:             'Total',
-    whatsapp_btn:      'Checkout via WhatsApp',
-    cart_empty:        'Your cart is empty',
-    cart_empty_sub:    'Add delicious items to get started!',
-    add_to_cart:       '+ Add',
-    half:              'Half',
-    full:              'Full',
-    bestseller:        '⭐ Bestseller',
-    bulk_badge:        '📦 1 Kg',
-    veg_badge:         '🌿 Veg',
-    per_piece:         'per piece',
-    bulk_note:         'Includes 1 kg meat + 1 kg rice',
-    bulk_note_veg:     'Includes 2 kg veg rice',
-    ann_text:          '🔥 Free delivery above ₹300 | Order via WhatsApp for instant confirmation | 📞 +91 98765 43210',
-    footer_tag:        'Slow-cooked. Soul-served. Always fresh.',
-    footer_copy:       '© 2025 Garva Biryani. All rights reserved. Pune, Maharashtra.',
-    modal_title:       'Important — Bulk Order Notice',
-    modal_body:        '<strong>1 Kg orders must be placed 2 hours in advance.</strong><br><br>Urgent orders will be provided in packets. Do you still want to add this to your cart?',
-    modal_cancel:      'Cancel',
-    modal_confirm:     'Got it, Add to Cart',
-    bulk_warn:         '⚠️ Your cart contains a 1 Kg bulk order. Please place this order at least 2 hours in advance. Urgent orders will be packed in packets.',
-    toast_added:       'Added to cart!',
-    toast_removed:     'Item removed.',
-  },
-  mr: {
-    eyebrow:           'अस्सल · पुण्याचे आवडते · २००६ पासून',
-    hero_title:        'बिर्याणी बनवली जाते<br><em>प्रेम आणि उत्साहाने</em>',
-    hero_sub:          'प्रत्येक बासमती दाण्यात एक कथा आहे — दमवर हळूहळू शिजवलेली, केशराने सीलबंद, पिढ्यानपिढ्यांच्या प्रेमाने बनलेली.',
-    order_now_cta:     'ऑर्डर करा',
-    stat_orders:       'दैनंदिन ऑर्डर',
-    stat_rating:       'ग्राहक रेटिंग',
-    stat_years:        'वर्षांचा अनुभव',
-    stat_outlets:      'शहरातील शाखा',
-    cat_biryani:       '🍛 नियमित बिर्याणी',
-    cat_specials:      '🍗 गर्वा स्पेशल्स',
-    cat_bulk:          '📦 मोठ्या ऑर्डर्स',
-    cat_biryani_long:  'नियमित बिर्याणी',
-    cat_biryani_mr:    'Regular Biryani Portions',
-    cat_specials_long: 'गर्वा स्पेशल्स — स्टार्टर्स',
-    cat_specials_mr:   'Garva Specials — Starters',
-    cat_bulk_long:     'मोठ्या ऑर्डर्स — १ किलो पार्टी',
-    cat_bulk_mr:       'Bulk / 1 Kg Party Orders',
-    cart_btn:          'कार्ट',
-    your_order:        'तुमची ऑर्डर',
-    subtotal:          'एकूण',
-    gst:               'जीएसटी (५%)',
-    packing:           'पॅकिंग चार्जेस',
-    total:             'एकूण रक्कम',
-    whatsapp_btn:      'व्हॉट्सॲपवर ऑर्डर करा',
-    cart_empty:        'कार्ट रिकामी आहे',
-    cart_empty_sub:    'स्वादिष्ट जेवण निवडा!',
-    add_to_cart:       '+ घाला',
-    half:              'अर्धी',
-    full:              'पूर्ण',
-    bestseller:        '⭐ बेस्टसेलर',
-    bulk_badge:        '📦 १ किलो',
-    veg_badge:         '🌿 वेज',
-    per_piece:         'प्रति पीस',
-    bulk_note:         '१ किलो चिकन/मटण + १ किलो राईस',
-    bulk_note_veg:     '२ किलो व्हेज राईस',
-    ann_text:          '🔥 ₹३०० वरील ऑर्डरवर फ्री डिलिव्हरी | व्हॉट्सॲपवर ऑर्डर करा | 📞 +९१ ९८७६५ ४३२१०',
-    footer_tag:        'हळूहळू शिजवलेले. प्रेमाने सर्व्ह केलेले. नेहमी ताजे.',
-    footer_copy:       '© २०२५ गर्वा बिर्याणी. सर्व हक्क राखीव. पुणे, महाराष्ट्र.',
-    modal_title:       'महत्त्वाचे — मोठ्या ऑर्डरची नोटीस',
-    modal_body:        '<strong>किलोची ऑर्डर २ तास आगोदर द्यावी लागेल.</strong><br><br>अर्जंट असेल तर पॅकेट मध्ये मिळेल. तरीही कार्टमध्ये घालायचे आहे का?',
-    modal_cancel:      'रद्द करा',
-    modal_confirm:     'समजले, घाला',
-    bulk_warn:         '⚠️ तुमच्या कार्टमध्ये १ किलो बल्क ऑर्डर आहे. ही ऑर्डर किमान २ तास आधी द्यावी लागेल. अर्जंट असेल तर पॅकेट मिळेल.',
-    toast_added:       'कार्टमध्ये जोडले!',
-    toast_removed:     'आयटम काढला.',
-  },
-};
-
-/* ═══════════════════════════════════════════════════════════════
-   MENU DATA
-═══════════════════════════════════════════════════════════════ */
-const MENU_DATA = {
-
-  /* ── Category 1: Regular Biryani ──────────────────────── */
-  biryani: [
-    {
-      id:         'hyd-chicken',
-      en:         'Hyderabadi Chicken Dum Biryani',
-      mr:         'हैद्राबादी चिकन दम बिर्याणी',
-      desc_en:    'Slow-cooked on dum with whole spices, saffron & fried onions.',
-      desc_mr:    'संपूर्ण मसाल्यांसह दमवर हळूहळू शिजवलेले, केशर व तळलेल्या कांद्यासह.',
-      isVeg:      false,
-      bestseller: true,
-      type:       'half_full',
-      prices:     { half: 90, full: 120 },
-      img:        'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&q=70',
-      img_alt_en: 'Hyderabadi Chicken Dum Biryani',
-      img_alt_mr: 'हैद्राबादी चिकन दम बिर्याणी',
-    },
-    {
-      id:         'tandoori-chicken',
-      en:         'Tandoori Chicken Dum Biryani',
-      mr:         'तंदूरी चिकन दम बिर्याणी',
-      desc_en:    'Basmati rice layered with tandoori-spiced chicken, cooked dum style.',
-      desc_mr:    'तंदूरी मसालेदार चिकनसह बासमती भात, दम स्टाइलमध्ये शिजवलेले.',
-      isVeg:      false,
-      bestseller: false,
-      type:       'half_full',
-      prices:     { half: 100, full: 150 },
-      img:        'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&q=70',
-      img_alt_en: 'Tandoori Chicken Dum Biryani',
-      img_alt_mr: 'तंदूरी चिकन दम बिर्याणी',
-    },
-    {
-      id:         'veg-dum',
-      en:         'Veg Dum Biryani',
-      mr:         'व्हेज दम बिर्याणी',
-      desc_en:    'Garden fresh vegetables with fragrant basmati, slow-cooked in dum.',
-      desc_mr:    'ताज्या भाज्या आणि सुगंधित बासमतीसह, दमवर शिजवलेले.',
-      isVeg:      true,
-      bestseller: false,
-      type:       'half_full',
-      prices:     { half: 80, full: 110 },
-      img:        'https://images.unsplash.com/photo-1645177628172-a94c1f96e6db?w=400&q=70',
-      img_alt_en: 'Veg Dum Biryani',
-      img_alt_mr: 'व्हेज दम बिर्याणी',
-    },
-    {
-      id:         'lucknowi-chicken',
-      en:         'Lucknowi Chicken Dum Biryani',
-      mr:         'लखनवी चिकन दम बिर्याणी',
-      desc_en:    'Delicate Awadhi flavours with tender chicken and aromatic spices.',
-      desc_mr:    'मऊ चिकनसह नाजूक अवधी स्वाद आणि सुगंधित मसाले.',
-      isVeg:      false,
-      bestseller: false,
-      type:       'half_full',
-      prices:     { half: 100, full: 150 },
-      img:        'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&q=70',
-      img_alt_en: 'Lucknowi Chicken Dum Biryani',
-      img_alt_mr: 'लखनवी चिकन दम बिर्याणी',
-    },
-    {
-      id:         'mutton-dum',
-      en:         'Mutton Dum Biryani',
-      mr:         'मटण दम बिर्याणी',
-      desc_en:    'Tender mutton marinated overnight, cooked low & slow with saffron.',
-      desc_mr:    'रात्रभर मॅरिनेट केलेले मऊ मटण, केशरासह हळूहळू शिजवलेले.',
-      isVeg:      false,
-      bestseller: false,
-      type:       'half_full',
-      prices:     { half: 170, full: 220 },
-      img:        'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&q=70',
-      img_alt_en: 'Mutton Dum Biryani',
-      img_alt_mr: 'मटण दम बिर्याणी',
-    },
-  ],
-
-  /* ── Category 2: Garva Specials ────────────────────────── */
-  specials: [
-    {
-      id:         'chicken-tandoor',
-      en:         'Chicken Tandoor',
-      mr:         'चिकन तंदूर',
-      desc_en:    'Whole leg quarters marinated in rich yoghurt & spices, char-grilled in our clay oven.',
-      desc_mr:    'दही व मसाल्यात मॅरिनेट केलेले संपूर्ण पाय, माती भट्टीत ग्रिल केलेले.',
-      isVeg:      false,
-      bestseller: false,
-      type:       'half_full',
-      prices:     { half: 200, full: 350 },
-      img:        'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=70',
-      img_alt_en: 'Chicken Tandoor',
-      img_alt_mr: 'चिकन तंदूर',
-    },
-    {
-      id:         'malai-tikka',
-      en:         'Chicken Malai Tikka',
-      mr:         'चिकन मलाई टिक्का',
-      desc_en:    'Creamy, melt-in-mouth tikka marinated in fresh cream & mild spices.',
-      desc_mr:    'ताज्या क्रीम व मसाल्यात मॅरिनेट केलेले मलईदार, तोंडात विरघळणारे टिक्का.',
-      isVeg:      false,
-      bestseller: false,
-      type:       'fixed',
-      prices:     { fixed: 150 },
-      pieces:     6,
-      img:        'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400&q=70',
-      img_alt_en: 'Chicken Malai Tikka',
-      img_alt_mr: 'चिकन मलाई टिक्का',
-    },
-    {
-      id:         'chicken-tikka',
-      en:         'Chicken Tikka',
-      mr:         'चिकन टिक्का',
-      desc_en:    'Boneless chicken marinated in spiced yoghurt, grilled over charcoal to perfection.',
-      desc_mr:    'मसालेदार दह्यात मॅरिनेट केलेले हाडे नसलेले चिकन, कोळशावर परिपूर्णपणे ग्रिल केलेले.',
-      isVeg:      false,
-      bestseller: false,
-      type:       'fixed',
-      prices:     { fixed: 150 },
-      pieces:     6,
-      img:        'https://images.unsplash.com/photo-1548369937-47519962c11a?w=400&q=70',
-      img_alt_en: 'Chicken Tikka',
-      img_alt_mr: 'चिकन टिक्का',
-    },
-    {
-      id:         'pahadi-tikka',
-      en:         'Chicken Pahadi Tikka',
-      mr:         'चिकन पहाडी टिक्का',
-      desc_en:    'Mountain-herb marinated chicken tikka with a vibrant green coriander-mint coating.',
-      desc_mr:    'पहाडी हर्ब्समध्ये मॅरिनेट केलेले चिकन टिक्का, हिरव्या कोथिंबीर-पुदिना कोटिंगसह.',
-      isVeg:      false,
-      bestseller: false,
-      type:       'fixed',
-      prices:     { fixed: 150 },
-      pieces:     6,
-      img:        'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=70',
-      img_alt_en: 'Chicken Pahadi Tikka',
-      img_alt_mr: 'चिकन पहाडी टिक्का',
-    },
-  ],
-
-  /* ── Category 3: Bulk / 1 Kg Orders ───────────────────── */
-  bulk: [
-    {
-      id:         'bulk-veg',
-      en:         'Veg Dum Biryani — 1 Kg',
-      mr:         'व्हेज दम बिर्याणी — १ किलो',
-      desc_en:    'Serves 3–4 people. Fragrant basmati with seasonal vegetables.',
-      desc_mr:    '३-४ जणांसाठी. सुगंधी बासमती व मोसमी भाज्यांसह.',
-      isVeg:      true,
-      bestseller: false,
-      type:       'fixed',
-      prices:     { fixed: 800 },
-      isBulk:     true,
-      img:        'https://images.unsplash.com/photo-1645177628172-a94c1f96e6db?w=400&q=70',
-      img_alt_en: '1 Kg Veg Biryani',
-      img_alt_mr: '१ किलो व्हेज बिर्याणी',
-    },
-    {
-      id:         'bulk-hyd-chicken',
-      en:         'Hyderabadi Chicken — 1 Kg',
-      mr:         'हैद्राबादी चिकन — १ किलो',
-      desc_en:    'Serves 3–4 people. Our signature Hyderabadi dum preparation.',
-      desc_mr:    '३-४ जणांसाठी. आमची विशेष हैदराबादी दम शैली.',
-      isVeg:      false,
-      bestseller: false,
-      type:       'fixed',
-      prices:     { fixed: 850 },
-      isBulk:     true,
-      img:        'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&q=70',
-      img_alt_en: '1 Kg Hyderabadi Chicken Biryani',
-      img_alt_mr: '१ किलो हैद्राबादी चिकन बिर्याणी',
-    },
-    {
-      id:         'bulk-lucknowi',
-      en:         'Lucknowi Chicken — 1 Kg',
-      mr:         'लखनवी चिकन — १ किलो',
-      desc_en:    'Serves 3–4 people. Subtle Awadhi-style with aromatic whole spices.',
-      desc_mr:    '३-४ जणांसाठी. सुगंधी मसाल्यांसह नाजूक अवधी शैली.',
-      isVeg:      false,
-      bestseller: false,
-      type:       'fixed',
-      prices:     { fixed: 1000 },
-      isBulk:     true,
-      img:        'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&q=70',
-      img_alt_en: '1 Kg Lucknowi Chicken Biryani',
-      img_alt_mr: '१ किलो लखनवी चिकन बिर्याणी',
-    },
-    {
-      id:         'bulk-tandoori',
-      en:         'Tandoori Chicken — 1 Kg',
-      mr:         'तंदूरी चिकन — १ किलो',
-      desc_en:    'Serves 3–4 people. Smoky tandoor flavour in every bite.',
-      desc_mr:    '३-४ जणांसाठी. प्रत्येक घासात धुराडा तंदूर स्वाद.',
-      isVeg:      false,
-      bestseller: false,
-      type:       'fixed',
-      prices:     { fixed: 1000 },
-      isBulk:     true,
-      img:        'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&q=70',
-      img_alt_en: '1 Kg Tandoori Chicken Biryani',
-      img_alt_mr: '१ किलो तंदूरी चिकन बिर्याणी',
-    },
-    {
-      id:         'bulk-mutton',
-      en:         'Mutton Dum Biryani — 1 Kg',
-      mr:         'मटण दम बिर्याणी — १ किलो',
-      desc_en:    'Serves 3–4 people. Premium mutton slow-cooked to perfection.',
-      desc_mr:    '३-४ जणांसाठी. उत्कृष्ट मटण परिपूर्णपणे हळूहळू शिजवलेले.',
-      isVeg:      false,
-      bestseller: false,
-      type:       'fixed',
-      prices:     { fixed: 1700 },
-      isBulk:     true,
-      img:        'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&q=70',
-      img_alt_en: '1 Kg Mutton Biryani',
-      img_alt_mr: '१ किलो मटण बिर्याणी',
-    },
-  ],
-};
-
-/* ═══════════════════════════════════════════════════════════════
-   STATE
-═══════════════════════════════════════════════════════════════ */
-let currentLang  = 'en';
-let cart         = [];          // array of cart items
-let pendingAdd   = null;        // item waiting for bulk modal confirmation
-let toastTimer   = null;
-
-/* ═══════════════════════════════════════════════════════════════
-   HELPERS
-═══════════════════════════════════════════════════════════════ */
-function t(key) {
-  return UI_STRINGS[currentLang][key] || UI_STRINGS['en'][key] || key;
-}
-
-function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
-
-function showToast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove('show'), 2400);
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   LANGUAGE SYSTEM
-═══════════════════════════════════════════════════════════════ */
-function setLang(lang) {
-  currentLang = lang;
-  document.documentElement.setAttribute('lang', lang === 'mr' ? 'mr' : 'en');
-
-  // Toggle button states
-  document.querySelectorAll('.lang-opt').forEach(btn => {
-    const isActive = btn.dataset.lang === lang;
-    btn.classList.toggle('active', isActive);
-    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-  });
-
-  // Update all data-key elements
-  document.querySelectorAll('[data-key]').forEach(el => {
-    const key = el.dataset.key;
-    const str = t(key);
-    if (el.tagName === 'INPUT') {
-      el.placeholder = str;
-    } else {
-      el.innerHTML = str;
-    }
-  });
-
-  // Re-render menus so names/descs update
-  renderAll();
-  renderCart();
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   CARD RENDERER
-═══════════════════════════════════════════════════════════════ */
-function getDefaultPortion(item) {
-  if (item.type === 'half_full') return 'half';
-  return 'fixed';
-}
-
-function renderCard(item, category) {
-  const name    = item[currentLang]        || item.en;
-  const desc    = item[`desc_${currentLang}`] || item.desc_en;
-  const imgAlt  = item[`img_alt_${currentLang}`] || item.img_alt_en;
-  const portion = getDefaultPortion(item);
-
-  // Badges
-  let badgesHTML = '';
-  if (item.bestseller) badgesHTML += `<span class="badge badge-bestseller">${t('bestseller')}</span>`;
-  if (item.isBulk)     badgesHTML += `<span class="badge badge-bulk">${t('bulk_badge')}</span>`;
-  if (item.isVeg)      badgesHTML += `<span class="badge badge-veg">${t('veg_badge')}</span>`;
-
-  // Veg indicator
-  const vegClass = item.isVeg ? 'veg' : 'nonveg';
-  const vegIndicator = `<div class="veg-indicator ${vegClass}" aria-label="${item.isVeg ? 'Vegetarian' : 'Non-vegetarian'}"><div class="dot"></div></div>`;
-
-  // Portion selector or fixed price
-  let priceAreaHTML = '';
-  let footerPrice   = '';
-
-  if (item.type === 'half_full') {
-    priceAreaHTML = `
-      <div class="portion-wrap" role="group" aria-label="Portion size">
-        <button class="portion-btn selected"
-                data-item-id="${item.id}" data-size="half" data-price="${item.prices.half}"
-                onclick="selectPortion(this, '${item.id}')"
-                aria-pressed="true">
-          ${t('half')}
-          <span class="portion-price">${fmt(item.prices.half)}</span>
-        </button>
-        <button class="portion-btn"
-                data-item-id="${item.id}" data-size="full" data-price="${item.prices.full}"
-                onclick="selectPortion(this, '${item.id}')"
-                aria-pressed="false">
-          ${t('full')}
-          <span class="portion-price">${fmt(item.prices.full)}</span>
-        </button>
-      </div>`;
-    footerPrice = `<div class="price-wrap">
-        <span class="price-main" id="price-${item.id}">${fmt(item.prices.half)}</span>
-        <span class="price-label" id="price-lbl-${item.id}">${t('half')}</span>
-      </div>`;
-  } else {
-    const showPieces = item.pieces ? ` · ${item.pieces} ${t('per_piece')}` : '';
-    footerPrice = `<div class="price-wrap">
-        <span class="price-main">${fmt(item.prices.fixed)}</span>
-        <span class="price-label">${showPieces || (item.isBulk ? 'Serves 3–4' : '')}</span>
-      </div>`;
-  }
-
-  // Bulk note
-  const bulkNoteHTML = item.isBulk
-    ? `<p class="card-note">${item.isVeg ? t('bulk_note_veg') : t('bulk_note')}</p>`
-    : '';
-
-  const animDelay = `animation-delay:${Math.random() * 0.2}s`;
-
-  return `
-    <article class="menu-card" role="listitem" style="${animDelay}" data-item-id="${item.id}" data-category="${category}">
-      <div class="card-img-wrap">
-        <img class="card-img" src="${item.img}" alt="${imgAlt}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1596797038530-2c107229654b?w=400&q=70'"/>
-        <div class="card-img-overlay" aria-hidden="true"></div>
-        <div class="badges" aria-hidden="true">${badgesHTML}</div>
-        ${vegIndicator}
+    <!-- Sidebar -->
+    <div class="admin-sidebar py-6">
+      <!-- Sidebar Logo -->
+      <div class="px-5 mb-7">
+        <div class="text-xs font-700 text-amber-500 uppercase tracking-widest mb-1">DURWAA OPS</div>
+        <div class="text-slate-600 text-xs">Dispatch Control Center</div>
       </div>
-      <div class="card-body">
-        <h3 class="card-name">${name}</h3>
-        <p class="card-desc">${desc}</p>
-        ${bulkNoteHTML}
-        ${priceAreaHTML}
-        <div class="card-footer">
-          ${footerPrice}
-          <button class="add-btn" onclick="handleAddToCart('${item.id}', '${category}')" aria-label="Add ${name} to cart">
-            <span class="add-btn-icon" aria-hidden="true">+</span>
-            <span>${t('add_to_cart')}</span>
+
+      <!-- Sidebar Nav -->
+      <nav class="space-y-1">
+        <a href="#" class="sidebar-link active">
+          <i class="fas fa-list-alt w-4 text-center"></i> Roster
+        </a>
+        <a href="#" class="sidebar-link">
+          <i class="fas fa-map-marked-alt w-4 text-center"></i> Live Map
+        </a>
+        <a href="#" class="sidebar-link">
+          <i class="fas fa-bus w-4 text-center"></i> Vehicles
+        </a>
+        <a href="#" class="sidebar-link">
+          <i class="fas fa-id-badge w-4 text-center"></i> Drivers
+        </a>
+        <a href="#" class="sidebar-link">
+          <i class="fas fa-chart-bar w-4 text-center"></i> Reports
+        </a>
+        <a href="#" class="sidebar-link">
+          <i class="fab fa-whatsapp w-4 text-center"></i> WA Logs
+        </a>
+        <a href="#" class="sidebar-link">
+          <i class="fas fa-cog w-4 text-center"></i> Settings
+        </a>
+      </nav>
+
+      <!-- Sidebar footer -->
+      <div class="mt-auto px-5 pt-8 border-t border-white/5 mt-8">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 text-xs font-700">DP</div>
+          <div>
+            <div class="text-white text-xs font-600">Dispatch Admin</div>
+            <div class="text-slate-600 text-xs">ops@durwaatravels.in</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Dashboard Area -->
+    <div class="admin-main">
+
+      <!-- Top bar -->
+      <div class="flex items-center justify-between mb-7">
+        <div>
+          <h2 class="text-white font-bold text-xl">Today's IT Shift Roster</h2>
+          <p class="text-slate-500 text-sm mt-0.5">
+            <span id="today-date"></span> · Showing all active bookings for the day
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 text-xs text-slate-500 bg-white/5 px-3 py-2 rounded-lg border border-white/5">
+            <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+            System Live
+          </div>
+          <button class="btn-amber text-xs py-2 px-4">
+            <i class="fas fa-plus"></i> Add Booking
           </button>
         </div>
       </div>
-    </article>`;
-}
 
-/* ═══════════════════════════════════════════════════════════════
-   PORTION SELECTION
-═══════════════════════════════════════════════════════════════ */
-function selectPortion(btn, itemId) {
-  const card = btn.closest('.menu-card');
-  card.querySelectorAll('.portion-btn').forEach(b => {
-    b.classList.remove('selected');
-    b.setAttribute('aria-pressed', 'false');
-  });
-  btn.classList.add('selected');
-  btn.setAttribute('aria-pressed', 'true');
+      <!-- Summary pills -->
+      <div class="flex flex-wrap gap-3 mb-6">
+        <div class="px-4 py-2 rounded-xl text-xs font-600 border" style="background:rgba(245,158,11,0.08); border-color:rgba(245,158,11,0.2); color:#f59e0b;">
+          <i class="fas fa-clock mr-1.5"></i>5 Pending
+        </div>
+        <div class="px-4 py-2 rounded-xl text-xs font-600 border" style="background:rgba(34,197,94,0.08); border-color:rgba(34,197,94,0.2); color:#22c55e;">
+          <i class="fas fa-check-circle mr-1.5"></i>4 Assigned
+        </div>
+        <div class="px-4 py-2 rounded-xl text-xs font-600 border" style="background:rgba(59,130,246,0.08); border-color:rgba(59,130,246,0.2); color:#60a5fa;">
+          <i class="fas fa-route mr-1.5"></i>3 En-Route
+        </div>
+        <div class="px-4 py-2 rounded-xl text-xs font-600 border ml-auto" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.08); color:#64748b;">
+          <i class="fas fa-filter mr-1.5"></i>Filter Shifts
+        </div>
+      </div>
 
-  // Update displayed price
-  const priceEl = document.getElementById(`price-${itemId}`);
-  const labelEl = document.getElementById(`price-lbl-${itemId}`);
-  if (priceEl) priceEl.textContent = fmt(parseInt(btn.dataset.price));
-  if (labelEl) labelEl.textContent = btn.dataset.size === 'half' ? t('half') : t('full');
-}
+      <!-- Table -->
+      <div class="rounded-xl overflow-hidden border border-white/[0.06]">
+        <table class="admin-table w-full" style="border-collapse:collapse;">
+          <thead>
+            <tr>
+              <th>Shift ID</th>
+              <th>Employee Name</th>
+              <th>Company</th>
+              <th>Pickup Area</th>
+              <th>Time</th>
+              <th>Status</th>
+              <th>Dispatch</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="font-mono text-amber-500/80 text-xs">SHF-0091</span></td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700" style="background:rgba(59,130,246,0.15); color:#60a5fa;">PK</div>
+                  <span>Priya Kulkarni</span>
+                </div>
+              </td>
+              <td><span class="text-slate-300 font-500">Infosys BPM</span></td>
+              <td><span class="text-slate-400"><i class="fas fa-map-pin text-amber-500/50 mr-1 text-xs"></i>Wagholi</span></td>
+              <td><span class="font-mono text-xs text-slate-300">06:30 AM</span></td>
+              <td><span class="status-badge status-pending"><i class="fas fa-circle text-[7px]"></i> Pending</span></td>
+              <td>
+                <button class="btn-dispatch" onclick="openDispatchModal('SHF-0091', 'Priya Kulkarni', 'Infosys BPM', 'Wagholi', '06:30 AM')">
+                  <i class="fab fa-whatsapp"></i> Assign & Dispatch
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="font-mono text-amber-500/80 text-xs">SHF-0092</span></td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700" style="background:rgba(168,85,247,0.15); color:#a855f7;">AM</div>
+                  <span>Amit Mahajan</span>
+                </div>
+              </td>
+              <td><span class="text-slate-300 font-500">TCS Hinjewadi</span></td>
+              <td><span class="text-slate-400"><i class="fas fa-map-pin text-amber-500/50 mr-1 text-xs"></i>Kharadi</span></td>
+              <td><span class="font-mono text-xs text-slate-300">07:00 AM</span></td>
+              <td><span class="status-badge status-assigned"><i class="fas fa-circle text-[7px]"></i> Assigned</span></td>
+              <td>
+                <button class="btn-dispatch" onclick="openDispatchModal('SHF-0092', 'Amit Mahajan', 'TCS Hinjewadi', 'Kharadi', '07:00 AM')">
+                  <i class="fab fa-whatsapp"></i> Assign & Dispatch
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="font-mono text-amber-500/80 text-xs">SHF-0093</span></td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700" style="background:rgba(245,158,11,0.15); color:#f59e0b;">SJ</div>
+                  <span>Sneha Joshi</span>
+                </div>
+              </td>
+              <td><span class="text-slate-300 font-500">Wipro Limited</span></td>
+              <td><span class="text-slate-400"><i class="fas fa-map-pin text-amber-500/50 mr-1 text-xs"></i>Viman Nagar</span></td>
+              <td><span class="font-mono text-xs text-slate-300">08:15 AM</span></td>
+              <td><span class="status-badge status-enroute"><i class="fas fa-circle text-[7px]"></i> En-Route</span></td>
+              <td>
+                <button class="btn-dispatch" onclick="openDispatchModal('SHF-0093', 'Sneha Joshi', 'Wipro Limited', 'Viman Nagar', '08:15 AM')">
+                  <i class="fab fa-whatsapp"></i> Assign & Dispatch
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="font-mono text-amber-500/80 text-xs">SHF-0094</span></td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700" style="background:rgba(34,197,94,0.15); color:#22c55e;">RD</div>
+                  <span>Rohan Desai</span>
+                </div>
+              </td>
+              <td><span class="text-slate-300 font-500">Cognizant</span></td>
+              <td><span class="text-slate-400"><i class="fas fa-map-pin text-amber-500/50 mr-1 text-xs"></i>Hadapsar</span></td>
+              <td><span class="font-mono text-xs text-slate-300">09:00 AM</span></td>
+              <td><span class="status-badge status-pending"><i class="fas fa-circle text-[7px]"></i> Pending</span></td>
+              <td>
+                <button class="btn-dispatch" onclick="openDispatchModal('SHF-0094', 'Rohan Desai', 'Cognizant', 'Hadapsar', '09:00 AM')">
+                  <i class="fab fa-whatsapp"></i> Assign & Dispatch
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="font-mono text-amber-500/80 text-xs">SHF-0095</span></td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700" style="background:rgba(239,68,68,0.15); color:#f87171;">NP</div>
+                  <span>Nisha Patil</span>
+                </div>
+              </td>
+              <td><span class="text-slate-300 font-500">Accenture</span></td>
+              <td><span class="text-slate-400"><i class="fas fa-map-pin text-amber-500/50 mr-1 text-xs"></i>Magarpatta</span></td>
+              <td><span class="font-mono text-xs text-slate-300">10:30 AM</span></td>
+              <td><span class="status-badge status-assigned"><i class="fas fa-circle text-[7px]"></i> Assigned</span></td>
+              <td>
+                <button class="btn-dispatch" onclick="openDispatchModal('SHF-0095', 'Nisha Patil', 'Accenture', 'Magarpatta', '10:30 AM')">
+                  <i class="fab fa-whatsapp"></i> Assign & Dispatch
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="font-mono text-amber-500/80 text-xs">SHF-0096</span></td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700" style="background:rgba(20,184,166,0.15); color:#2dd4bf;">VK</div>
+                  <span>Vijay Kamble</span>
+                </div>
+              </td>
+              <td><span class="text-slate-300 font-500">Tech Mahindra</span></td>
+              <td><span class="text-slate-400"><i class="fas fa-map-pin text-amber-500/50 mr-1 text-xs"></i>Baner</span></td>
+              <td><span class="font-mono text-xs text-slate-300">02:00 PM</span></td>
+              <td><span class="status-badge status-pending"><i class="fas fa-circle text-[7px]"></i> Pending</span></td>
+              <td>
+                <button class="btn-dispatch" onclick="openDispatchModal('SHF-0096', 'Vijay Kamble', 'Tech Mahindra', 'Baner', '02:00 PM')">
+                  <i class="fab fa-whatsapp"></i> Assign & Dispatch
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="font-mono text-amber-500/80 text-xs">SHF-0097</span></td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700" style="background:rgba(251,146,60,0.15); color:#fb923c;">AS</div>
+                  <span>Aakanksha Shinde</span>
+                </div>
+              </td>
+              <td><span class="text-slate-300 font-500">Infosys BPM</span></td>
+              <td><span class="text-slate-400"><i class="fas fa-map-pin text-amber-500/50 mr-1 text-xs"></i>Koregaon Park</span></td>
+              <td><span class="font-mono text-xs text-slate-300">06:00 PM</span></td>
+              <td><span class="status-badge status-enroute"><i class="fas fa-circle text-[7px]"></i> En-Route</span></td>
+              <td>
+                <button class="btn-dispatch" onclick="openDispatchModal('SHF-0097', 'Aakanksha Shinde', 'Infosys BPM', 'Koregaon Park', '06:00 PM')">
+                  <i class="fab fa-whatsapp"></i> Assign & Dispatch
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="font-mono text-amber-500/80 text-xs">SHF-0098</span></td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-700" style="background:rgba(99,102,241,0.15); color:#818cf8;">MR</div>
+                  <span>Mukesh Rathod</span>
+                </div>
+              </td>
+              <td><span class="text-slate-300 font-500">HCL Technologies</span></td>
+              <td><span class="text-slate-400"><i class="fas fa-map-pin text-amber-500/50 mr-1 text-xs"></i>Dhanori</span></td>
+              <td><span class="font-mono text-xs text-slate-300">10:00 PM</span></td>
+              <td><span class="status-badge status-pending"><i class="fas fa-circle text-[7px]"></i> Pending</span></td>
+              <td>
+                <button class="btn-dispatch" onclick="openDispatchModal('SHF-0098', 'Mukesh Rathod', 'HCL Technologies', 'Dhanori', '10:00 PM')">
+                  <i class="fab fa-whatsapp"></i> Assign & Dispatch
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-/* ═══════════════════════════════════════════════════════════════
-   ADD TO CART
-═══════════════════════════════════════════════════════════════ */
-function handleAddToCart(itemId, category) {
-  const item = findItem(itemId);
-  if (!item) return;
+      <!-- Table footer meta -->
+      <div class="flex items-center justify-between mt-4 text-xs text-slate-600">
+        <span>Showing 8 of 12 bookings for today</span>
+        <div class="flex items-center gap-2">
+          <button class="px-3 py-1.5 rounded border border-white/5 hover:border-amber-500/30 hover:text-slate-300 transition-all">← Prev</button>
+          <span class="px-3 py-1.5 rounded border border-amber-500/30 text-amber-500">1</span>
+          <button class="px-3 py-1.5 rounded border border-white/5 hover:border-amber-500/30 hover:text-slate-300 transition-all">Next →</button>
+        </div>
+      </div>
 
-  // Show bulk warning modal first
-  if (item.isBulk) {
-    pendingAdd = { itemId, category };
-    openBulkModal(item);
-    return;
-  }
-  commitAdd(itemId, category);
-}
+    </div>
+  </div>
 
-function commitAdd(itemId, category) {
-  const item = findItem(itemId);
-  if (!item) return;
+  <!-- Dashboard footer -->
+  <div style="background:#060b14; border-top:1px solid rgba(255,255,255,0.04); padding:12px 28px;" class="flex items-center justify-between text-xs text-slate-700">
+    <span>Durwaa Travels — Dispatch Control Center v2.1.0</span>
+    <span>WhatsApp Cloud API: <span class="text-green-500">● Connected</span></span>
+    <span>Last sync: Just now</span>
+  </div>
 
-  // Get selected portion if applicable
-  const card = document.querySelector(`[data-item-id="${itemId}"]`);
-  let portionSize = 'fixed';
-  let price       = item.prices.fixed || 0;
+</div>
 
-  if (item.type === 'half_full' && card) {
-    const sel = card.querySelector('.portion-btn.selected');
-    if (sel) {
-      portionSize = sel.dataset.size;
-      price       = parseInt(sel.dataset.price);
-    }
-  }
 
-  // Build cart key
-  const cartKey = `${itemId}_${portionSize}`;
-  const existing = cart.find(ci => ci.key === cartKey);
+<!-- ═══════════════════════════════════════════════════════
+     WHATSAPP DISPATCH MODAL
+════════════════════════════════════════════════════════ -->
+<div id="dispatchModal" class="modal-overlay" onclick="handleModalOverlayClick(event)">
+  <div class="modal-box">
 
-  if (existing) {
-    existing.qty++;
-  } else {
-    cart.push({
-      key:        cartKey,
-      itemId,
-      category,
-      portion:    portionSize,
-      price,
-      qty:        1,
-      isBulk:     !!item.isBulk,
+    <!-- Modal Header -->
+    <div class="px-7 py-5 flex items-center justify-between border-b border-white/[0.06]">
+      <div>
+        <div class="flex items-center gap-2 mb-0.5">
+          <i class="fab fa-whatsapp text-green-400 text-lg"></i>
+          <h3 class="text-white font-bold text-base">Assign Driver & Dispatch</h3>
+        </div>
+        <p class="text-slate-500 text-xs" id="modal-shift-info">Shift SHF-XXXX · Employee Name</p>
+      </div>
+      <button onclick="closeModal()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white flex items-center justify-center transition-all text-sm">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="px-7 py-6 space-y-5">
+
+      <!-- Booking Summary -->
+      <div class="grid grid-cols-3 gap-3">
+        <div class="rounded-xl p-3" style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);">
+          <div class="text-slate-600 text-xs mb-1">Company</div>
+          <div class="text-slate-200 text-sm font-600" id="modal-company">—</div>
+        </div>
+        <div class="rounded-xl p-3" style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);">
+          <div class="text-slate-600 text-xs mb-1">Pickup</div>
+          <div class="text-slate-200 text-sm font-600" id="modal-pickup">—</div>
+        </div>
+        <div class="rounded-xl p-3" style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);">
+          <div class="text-slate-600 text-xs mb-1">Time</div>
+          <div class="text-slate-200 text-sm font-600" id="modal-time">—</div>
+        </div>
+      </div>
+
+      <!-- Driver selection -->
+      <div>
+        <label class="block text-xs text-slate-500 font-600 uppercase tracking-wider mb-2">
+          <i class="fas fa-id-badge mr-1 text-amber-500/60"></i> Select Driver
+        </label>
+        <select class="select-dark" id="driverSelect" onchange="updateWAPreview()">
+          <option value="" disabled selected>— Choose an available driver —</option>
+          <option value="Rajesh Gaikwad|+91 94234 11001|MH12-AB-4521">Rajesh Gaikwad · MH12-AB-4521 · +91 94234 11001</option>
+          <option value="Sunil More|+91 98765 22003|MH12-CD-7843">Sunil More · MH12-CD-7843 · +91 98765 22003</option>
+          <option value="Prakash Bhosale|+91 90123 33004|MH12-EF-9901">Prakash Bhosale · MH12-EF-9901 · +91 90123 33004</option>
+          <option value="Vikas Shinde|+91 87654 44002|MH14-GH-1234">Vikas Shinde · MH14-GH-1234 · +91 87654 44002</option>
+          <option value="Manoj Pawar|+91 76543 55007|MH12-IJ-5566">Manoj Pawar · MH12-IJ-5566 · +91 76543 55007</option>
+        </select>
+      </div>
+
+      <!-- WhatsApp Preview -->
+      <div>
+        <label class="block text-xs text-slate-500 font-600 uppercase tracking-wider mb-3">
+          <i class="fab fa-whatsapp mr-1 text-green-400/60"></i> Automated WhatsApp Message Preview
+        </label>
+        <div class="wa-preview" id="wa-message-preview">
+          <span class="text-slate-600">← Select a driver above to preview the message</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="px-7 py-5 border-t border-white/[0.06] flex gap-3 justify-end">
+      <button onclick="closeModal()" class="px-5 py-2.5 rounded-xl text-slate-400 text-sm font-600 hover:text-white border border-white/8 hover:border-white/15 transition-all">
+        Cancel
+      </button>
+      <button onclick="confirmDispatch()" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-white text-sm font-700 transition-all" style="background:linear-gradient(135deg,#25d366,#128c7e);" id="confirmBtn">
+        <i class="fab fa-whatsapp"></i>
+        Confirm & Send WhatsApp
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SUCCESS TOAST
+════════════════════════════════════════════════════════ -->
+<div id="successToast" class="fixed bottom-6 right-6 z-[6000] flex items-center gap-3 px-5 py-4 rounded-xl text-white text-sm font-600 shadow-2xl transition-all duration-500 opacity-0 translate-y-4 pointer-events-none"
+     style="background:linear-gradient(135deg,#25d366,#128c7e); border:1px solid rgba(255,255,255,0.15);">
+  <i class="fab fa-whatsapp text-xl"></i>
+  <div>
+    <div class="font-700">WhatsApp Sent Successfully!</div>
+    <div class="text-white/70 text-xs" id="toast-driver-name">Driver notified via WhatsApp Cloud API</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════ -->
+<script>
+  // ─── Today's date ─────────────────────────────────────
+  const dateEl = document.getElementById('today-date');
+  if (dateEl) {
+    dateEl.textContent = new Date().toLocaleDateString('en-IN', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
     });
   }
 
-  renderCart();
-  showToast(t('toast_added'));
-  openCart();
-}
+  // ─── Modal state ──────────────────────────────────────
+  let currentShift = {};
 
-function findItem(itemId) {
-  for (const cat of Object.values(MENU_DATA)) {
-    const found = cat.find(i => i.id === itemId);
-    if (found) return found;
-  }
-  return null;
-}
+  function openDispatchModal(shiftId, empName, company, pickup, time) {
+    currentShift = { shiftId, empName, company, pickup, time };
 
-/* ═══════════════════════════════════════════════════════════════
-   BULK MODAL
-═══════════════════════════════════════════════════════════════ */
-function openBulkModal(item) {
-  document.getElementById('modal-title').textContent = t('modal_title');
-  document.getElementById('modal-body').innerHTML    = t('modal_body');
-  document.querySelector('.modal-btn-cancel').textContent  = t('modal_cancel');
-  document.querySelector('.modal-btn-confirm').textContent = t('modal_confirm');
-  document.getElementById('modal-overlay').classList.add('open');
-}
+    document.getElementById('modal-shift-info').textContent = `Shift ${shiftId} · ${empName}`;
+    document.getElementById('modal-company').textContent = company;
+    document.getElementById('modal-pickup').textContent = pickup;
+    document.getElementById('modal-time').textContent = time;
+    document.getElementById('driverSelect').value = '';
+    document.getElementById('wa-message-preview').innerHTML =
+      '<span style="color:#475569;">← Select a driver above to preview the message</span>';
 
-function cancelBulkAdd() {
-  pendingAdd = null;
-  document.getElementById('modal-overlay').classList.remove('open');
-}
-
-function confirmBulkAdd() {
-  document.getElementById('modal-overlay').classList.remove('open');
-  if (pendingAdd) {
-    const { itemId, category } = pendingAdd;
-    pendingAdd = null;
-    commitAdd(itemId, category);
-  }
-}
-
-// Close modal on backdrop click
-document.getElementById('modal-overlay').addEventListener('click', function(e) {
-  if (e.target === this) cancelBulkAdd();
-});
-
-/* ═══════════════════════════════════════════════════════════════
-   CART RENDERING
-═══════════════════════════════════════════════════════════════ */
-function renderCart() {
-  const itemsEl   = document.getElementById('cart-items');
-  const footEl    = document.getElementById('cart-foot');
-  const countEl   = document.getElementById('cart-count');
-  const countBadgeEl = document.getElementById('cart-item-count');
-  const bulkWarnEl   = document.getElementById('cart-bulk-warn');
-
-  const totalQty  = cart.reduce((s, ci) => s + ci.qty, 0);
-  const hasBulk   = cart.some(ci => ci.isBulk);
-
-  // Cart count badge
-  countEl.textContent = totalQty;
-  countEl.classList.toggle('show', totalQty > 0);
-  countBadgeEl.textContent = totalQty;
-
-  // Bulk warning
-  if (hasBulk) {
-    document.getElementById('cart-bulk-warn-text').textContent = t('bulk_warn');
-    bulkWarnEl.classList.add('show');
-  } else {
-    bulkWarnEl.classList.remove('show');
+    document.getElementById('dispatchModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
 
-  if (cart.length === 0) {
-    itemsEl.innerHTML = `
-      <div class="cart-empty">
-        <span class="cart-empty-icon" aria-hidden="true">🍛</span>
-        <p class="cart-empty-text">${t('cart_empty')}</p>
-        <p class="cart-empty-sub">${t('cart_empty_sub')}</p>
-      </div>`;
-    footEl.style.display = 'none';
-    return;
+  function closeModal() {
+    document.getElementById('dispatchModal').classList.remove('open');
+    document.body.style.overflow = '';
   }
 
-  itemsEl.innerHTML = cart.map(ci => {
-    const item      = findItem(ci.itemId);
-    if (!item) return '';
-    const name      = item[currentLang] || item.en;
-    const vegClass  = item.isVeg ? 'veg' : 'nonveg';
-    const subLabel  = ci.portion !== 'fixed'
-      ? (ci.portion === 'half' ? t('half') : t('full'))
-      : (item.pieces ? `${item.pieces} ${t('per_piece')}` : '');
-
-    return `
-      <div class="cart-item" data-cart-key="${ci.key}">
-        <div class="ci-veg ${vegClass}" aria-hidden="true"><div class="ci-dot"></div></div>
-        <div class="ci-info">
-          <p class="ci-name">${name}</p>
-          ${subLabel ? `<p class="ci-sub">${subLabel}</p>` : ''}
-          <p class="ci-price">${fmt(ci.price * ci.qty)}</p>
-        </div>
-        <div class="ci-qty-controls" aria-label="Quantity controls for ${name}">
-          <button class="ci-qty-btn remove" onclick="changeQty('${ci.key}', -1)" aria-label="Remove one ${name}">−</button>
-          <span class="ci-qty-num" aria-label="Quantity: ${ci.qty}">${ci.qty}</span>
-          <button class="ci-qty-btn" onclick="changeQty('${ci.key}', 1)" aria-label="Add one more ${name}">+</button>
-        </div>
-      </div>`;
-  }).join('');
-
-  // Bill
-  const subtotal = cart.reduce((s, ci) => s + ci.price * ci.qty, 0);
-  const gst      = Math.round(subtotal * CONFIG.gst_rate);
-  const packing  = totalQty * CONFIG.packing_per_item;
-  const total    = subtotal + gst + packing;
-
-  document.getElementById('bill-subtotal').textContent = fmt(subtotal);
-  document.getElementById('bill-gst').textContent      = fmt(gst);
-  document.getElementById('bill-packing').textContent  = fmt(packing);
-  document.getElementById('bill-total').textContent    = fmt(total);
-  footEl.style.display = 'flex';
-
-  // WhatsApp link
-  updateWhatsAppLink(subtotal, gst, packing, total);
-}
-
-function changeQty(cartKey, delta) {
-  const idx = cart.findIndex(ci => ci.key === cartKey);
-  if (idx === -1) return;
-  cart[idx].qty += delta;
-  if (cart[idx].qty <= 0) {
-    cart.splice(idx, 1);
-    showToast(t('toast_removed'));
+  function handleModalOverlayClick(e) {
+    if (e.target === document.getElementById('dispatchModal')) closeModal();
   }
-  renderCart();
-}
 
-/* ═══════════════════════════════════════════════════════════════
-   WHATSAPP CHECKOUT
-═══════════════════════════════════════════════════════════════ */
-function updateWhatsAppLink(subtotal, gst, packing, total) {
-  const header  = currentLang === 'mr'
-    ? '🍛 *नवीन ऑर्डर — गर्वा बिर्याणी*\n\n'
-    : '🍛 *New Order — Garva Biryani*\n\n';
+  function updateWAPreview() {
+    const sel = document.getElementById('driverSelect');
+    const val = sel.value;
+    if (!val) return;
 
-  const itemLines = cart.map(ci => {
-    const item   = findItem(ci.itemId);
-    const name   = (item && (item[currentLang] || item.en)) || ci.itemId;
-    const size   = ci.portion !== 'fixed' ? ` (${ci.portion === 'half' ? t('half') : t('full')})` : '';
-    return `• ${name}${size} × ${ci.qty}  —  ${fmt(ci.price * ci.qty)}`;
-  }).join('\n');
+    const [driverName, driverPhone, vehicleNo] = val.split('|');
+    const { shiftId, empName, company, pickup, time } = currentShift;
 
-  const footer = currentLang === 'mr'
-    ? `\n\n────────────────\n*एकूण:* ${fmt(subtotal)}\n*जीएसटी (५%):* ${fmt(gst)}\n*पॅकिंग:* ${fmt(packing)}\n*एकूण रक्कम: ${fmt(total)}*\n\nकृपया माझा पत्ता व नाव सांगा.`
-    : `\n\n────────────────\n*Subtotal:* ${fmt(subtotal)}\n*GST (5%):* ${fmt(gst)}\n*Packing:* ${fmt(packing)}\n*Total: ${fmt(total)}*\n\nKindly share your name & delivery address.`;
+    const today = new Date().toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
 
-  const message = encodeURIComponent(header + itemLines + footer);
-  const btn     = document.getElementById('whatsapp-btn');
-  btn.href      = `https://wa.me/${CONFIG.whatsapp_number}?text=${message}`;
-  btn.querySelector('[data-key="whatsapp_btn"]').textContent = t('whatsapp_btn');
-}
+    const msg = `
+🚗 *DURWAA TRAVELS — Shift Assignment*
 
-/* ═══════════════════════════════════════════════════════════════
-   CART OPEN / CLOSE
-═══════════════════════════════════════════════════════════════ */
-function openCart() {
-  document.getElementById('cart-drawer').classList.add('open');
-  document.getElementById('cart-backdrop').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('cart-drawer').focus();
-}
+Dear *${driverName}*,
 
-function closeCart() {
-  document.getElementById('cart-drawer').classList.remove('open');
-  document.getElementById('cart-backdrop').classList.remove('open');
-  document.body.style.overflow = '';
-}
+You have been assigned a new pickup. Please confirm.
 
-// ESC key closes cart/modal
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    if (document.getElementById('modal-overlay').classList.contains('open')) {
-      cancelBulkAdd();
-    } else {
-      closeCart();
+━━━━━━━━━━━━━━━
+📋 *Shift ID:* ${shiftId}
+👤 *Employee:* ${empName}
+🏢 *Company:* ${company}
+📍 *Pickup Point:* ${pickup}, Pune
+⏰ *Pickup Time:* ${time}
+📅 *Date:* ${today}
+━━━━━━━━━━━━━━━
+
+🚙 *Your Vehicle:* ${vehicleNo}
+
+✅ Please reply *CONFIRMED* once acknowledged.
+📞 For support: 7776976767
+
+— Durwaa Travels Dispatch Team`.trim();
+
+    document.getElementById('wa-message-preview').innerHTML =
+      msg.replace(/\n/g, '<br/>').replace(/\*(.*?)\*/g, '<span style="color:#e2e8f0;font-weight:700;">$1</span>');
+  }
+
+  function confirmDispatch() {
+    const sel = document.getElementById('driverSelect');
+    if (!sel.value) {
+      sel.style.borderColor = '#ef4444';
+      setTimeout(() => sel.style.borderColor = '', 1500);
+      return;
     }
+    const [driverName] = sel.value.split('|');
+    closeModal();
+    showToast(`Message sent to ${driverName}`);
   }
-});
 
-/* ═══════════════════════════════════════════════════════════════
-   RENDER ALL MENU SECTIONS
-═══════════════════════════════════════════════════════════════ */
-function renderAll() {
-  document.getElementById('biryani-grid').innerHTML  = MENU_DATA.biryani.map(i => renderCard(i, 'biryani')).join('');
-  document.getElementById('specials-grid').innerHTML = MENU_DATA.specials.map(i => renderCard(i, 'specials')).join('');
-  document.getElementById('bulk-grid').innerHTML     = MENU_DATA.bulk.map(i => renderCard(i, 'bulk')).join('');
-}
+  function showToast(msg) {
+    const toast = document.getElementById('successToast');
+    document.getElementById('toast-driver-name').textContent = msg;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+    toast.style.pointerEvents = 'auto';
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(16px)';
+      toast.style.pointerEvents = 'none';
+    }, 4000);
+  }
 
-/* ═══════════════════════════════════════════════════════════════
-   ACTIVE CATEGORY HIGHLIGHT ON SCROLL
-═══════════════════════════════════════════════════════════════ */
-(function initScrollSpy() {
-  const sections = ['biryani', 'specials', 'bulk'];
-  const tabs     = document.querySelectorAll('.cat-tab');
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        tabs.forEach(tab => {
-          tab.classList.toggle('active', tab.getAttribute('href') === `#${entry.target.id}`);
-        });
-      }
-    });
-  }, { rootMargin: '-30% 0px -60% 0px' });
-
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) obs.observe(el);
+  // Close modal on Esc
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
   });
-})();
-
-/* ═══════════════════════════════════════════════════════════════
-   INIT
-═══════════════════════════════════════════════════════════════ */
-renderAll();
-
 </script>
+
 </body>
 </html>
